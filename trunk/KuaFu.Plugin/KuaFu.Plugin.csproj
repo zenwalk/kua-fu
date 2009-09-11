@@ -48,7 +48,6 @@
     <Compile Include="AddShapeClass.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="BaseCommand.cs" />
-    <Compile Include="FullExtent.cs" />
     <Compile Include="IApplication.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IItemDef.cs" />
