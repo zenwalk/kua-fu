@@ -5,6 +5,10 @@ using ESRI.MapObjects2.Core;
 
 namespace KuaFu.Plugin
 {
+
+    /// <summary>
+    /// 这个类将是一个模板性质的类
+    /// </summary>
     public class BaseCommand : ICommand
     {
         private AxMap _map;
