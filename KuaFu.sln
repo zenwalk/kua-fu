@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KuaFu", "KuaFu\KuaFu.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KuaFu.Plugin", "KuaFu.Plugin\KuaFu.Plugin.csproj", "{D5C50008-8B94-4FD9-ACA5-D8F1B9ADEB59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KuaFu.Plugin.Standard", "KuaFu.Plugin.Standard\KuaFu.Plugin.Standard.csproj", "{A089557C-3142-4B11-8BA8-5B94F4BBA72C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{D5C50008-8B94-4FD9-ACA5-D8F1B9ADEB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5C50008-8B94-4FD9-ACA5-D8F1B9ADEB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5C50008-8B94-4FD9-ACA5-D8F1B9ADEB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A089557C-3142-4B11-8BA8-5B94F4BBA72C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A089557C-3142-4B11-8BA8-5B94F4BBA72C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A089557C-3142-4B11-8BA8-5B94F4BBA72C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A089557C-3142-4B11-8BA8-5B94F4BBA72C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
