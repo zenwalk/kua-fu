@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 using ESRI.MapObjects2.Core;
 using KuaFu.Plugin;
+using KuaFu.Plugin;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -23,8 +24,36 @@ namespace KuaFu
 
         ITool _tool; //当前使用的ITool
 
+        /// <summary>
+        /// Thread to show the splash
+        /// </summary>
+        private void ShowSplash()
+        {
+            frmSplash _form = null;
+            try
+            {
+                _form = new frmSplash();
+                _form.ShowDialog();
+            }
+            catch (ThreadAbortException)
+            {
+                //Thread was aborted normally
+            }
+            finally
+            {
+                _form = null;
+            }
+        }
+
         public frmMain()
         {
+            //处理欢迎窗体
+            //create thread to show splash
+            Thread showSplashThread = new Thread(new ThreadStart(ShowSplash));
+            showSplashThread.Start();
+
+            //Time consumed here
+
             InitializeComponent();
 
             _application = new KuaFu.Plugin.Application();
@@ -51,20 +80,24 @@ namespace KuaFu
             }
 
             ICommand cmd;
-            cmd = new KuaFu.Plugin.AddShapeClass();
+            cmd = new KuaFu.Plugin.Standard.AddShapeClass();
             cmd.OnCreate(_application.Map);
             cmds.Add(cmd.Name, cmd);
 
-            cmd = new KuaFu.Plugin.AddImageClass();
+            cmd = new KuaFu.Plugin.Standard.AddImageClass();
             cmd.OnCreate(_application.Map);
             cmds.Add(cmd.Name, cmd);
 
-            cmd = new KuaFu.Plugin.FullExtent();
+            cmd = new KuaFu.Plugin.Standard.FullExtent();
             cmd.OnCreate(_application.Map);
             cmds.Add(cmd.Name, cmd);
 
             ITool tool;
-            tool = new KuaFu.Plugin.ZoomIn();
+            tool = new KuaFu.Plugin.Standard.ZoomIn();
+            tool.OnCreate(_application.Map);
+            tools.Add(tool.Name, tool);
+
+            tool = new KuaFu.Plugin.Standard.PanClass();
             tool.OnCreate(_application.Map);
             tools.Add(tool.Name, tool);
 
@@ -85,6 +118,11 @@ namespace KuaFu
                 button.Click += new EventHandler(Tool_Click);
                 toolStrip1.Items.Add(button);
             }
+
+
+            showSplashThread.Abort();
+            showSplashThread.Join();
+            showSplashThread = null;
 
         }
 

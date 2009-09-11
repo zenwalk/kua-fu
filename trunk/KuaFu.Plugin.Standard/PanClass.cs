@@ -1,15 +1,17 @@
-Ôªøusing System;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
+
 using ESRI.MapObjects2.Core;
 
 namespace KuaFu.Plugin.Standard
 {
-    public class ZoomIn : ITool
+    public class PanClass : KuaFu.Plugin.ITool
     {
         AxMap _map;
 
-        #region ITool ÊàêÂëò
+        #region ITool ≥…‘±
 
         public System.Drawing.Bitmap Bitmap
         {
@@ -17,9 +19,7 @@ namespace KuaFu.Plugin.Standard
         }
 
         public string Caption
-        {
-            get { return "ÊîæÂ§ß"; }
-        }
+        { get { return "“∆∂Ø"; } }
 
         public string Category
         {
@@ -53,12 +53,17 @@ namespace KuaFu.Plugin.Standard
 
         public string Name
         {
-            get { return "ZoomIn"; }
+            get { return "Pan"; }
         }
 
         public void OnClick()
         {
-            
+            // nothing
+        }
+
+        public void OnCreate(AxMap map)
+        {
+            _map = map;
         }
 
         public string Tooltip
@@ -93,9 +98,7 @@ namespace KuaFu.Plugin.Standard
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            Rectangle rect = _map.TrackRectangle();
-            _map.Extent = rect;
-
+            _map.Pan();
         }
 
         public void OnMouseUp(int button, int shift, int x, int y)
@@ -118,11 +121,8 @@ namespace KuaFu.Plugin.Standard
             throw new NotImplementedException();
         }
 
-        public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
-        {
-            _map = map;
-        }
-
         #endregion
     }
 }
+
+

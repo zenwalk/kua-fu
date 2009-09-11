@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ESRI.MapObjects2.Core;
 
-namespace KuaFu.Plugin
+namespace KuaFu.Plugin.Standard
 {
     public class ZoomInClass : ICommand
     {
