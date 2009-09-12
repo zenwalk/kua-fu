@@ -1,0 +1,3 @@
+Janus.Windows.UI.Dock.UIPanelManager, Janus.Windows.UI.v3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=04fbad2612a436bd
+Janus.Windows.UI.CommandBars.UICommandManager, Janus.Windows.UI.v3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=04fbad2612a436bd
+Janus.Windows.UI.StatusBar.UIStatusBar, Janus.Windows.UI.v3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=04fbad2612a436bd

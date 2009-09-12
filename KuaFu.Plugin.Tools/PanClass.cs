@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 using ESRI.MapObjects2.Core;
 
-namespace KuaFu.Plugin.Standard
+namespace KuaFu.Plugin.Tools
 {
     public class PanClass : KuaFu.Plugin.ITool
     {

@@ -14,6 +14,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,7 +38,12 @@
     <Reference Include="ESRI.MapObjects2.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86" />
     <Reference Include="ESRI.MapObjects2.Custom, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86" />
     <Reference Include="ESRI.MapObjects2.MemTable, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86" />
+    <Reference Include="Janus.Windows.Common.v3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=04fbad2612a436bd, processorArchitecture=MSIL" />
+    <Reference Include="Janus.Windows.UI.v3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=04fbad2612a436bd, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -67,6 +73,7 @@
       <DependentUpon>frmSplash.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -91,6 +98,10 @@
     <ProjectReference Include="..\KuaFu.Plugin.Standard\KuaFu.Plugin.Standard.csproj">
       <Project>{A089557C-3142-4B11-8BA8-5B94F4BBA72C}</Project>
       <Name>KuaFu.Plugin.Standard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KuaFu.Plugin.Tools\KuaFu.Plugin.Tools.csproj">
+      <Project>{43C9D9BF-3889-4AED-B7AD-0A553F91E32E}</Project>
+      <Name>KuaFu.Plugin.Tools</Name>
     </ProjectReference>
     <ProjectReference Include="..\KuaFu.Plugin\KuaFu.Plugin.csproj">
       <Project>{D5C50008-8B94-4FD9-ACA5-D8F1B9ADEB59}</Project>

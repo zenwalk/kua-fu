@@ -88,16 +88,16 @@ namespace KuaFu
             cmd.OnCreate(_application.Map);
             cmds.Add(cmd.Name, cmd);
 
-            cmd = new KuaFu.Plugin.Standard.FullExtent();
+            cmd = new KuaFu.Plugin.Tools.FullExtent();
             cmd.OnCreate(_application.Map);
             cmds.Add(cmd.Name, cmd);
 
             ITool tool;
-            tool = new KuaFu.Plugin.Standard.ZoomIn();
+            tool = new KuaFu.Plugin.Tools.ZoomIn();
             tool.OnCreate(_application.Map);
             tools.Add(tool.Name, tool);
 
-            tool = new KuaFu.Plugin.Standard.PanClass();
+            tool = new KuaFu.Plugin.Tools.PanClass();
             tool.OnCreate(_application.Map);
             tools.Add(tool.Name, tool);
 
@@ -108,7 +108,6 @@ namespace KuaFu
                 ToolStripItem button = new ToolStripButton(pair.Value.Caption);
                 button.Name = pair.Value.Name;
                 button.Click += new EventHandler(Command_Click);
-                toolStrip1.Items.Add(button);
             }
 
             foreach (var pair in tools)
@@ -116,7 +115,6 @@ namespace KuaFu
                 ToolStripItem button = new ToolStripButton(pair.Value.Caption);
                 button.Name = pair.Value.Name;
                 button.Click += new EventHandler(Tool_Click);
-                toolStrip1.Items.Add(button);
             }
 
 
