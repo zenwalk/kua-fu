@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using ESRI.MapObjects2.Core;
 
-namespace KuaFu.Plugin.Standard
+namespace KuaFu.Plugin.Tools
 {
-    public class ZoomInClass : ICommand
+    public class FullExtent : ICommand
     {
         AxMap _map;
 
@@ -13,19 +13,17 @@ namespace KuaFu.Plugin.Standard
 
         public string Name
         {
-            get { return "ZoomIn"; }
+            get { return "FullExtent"; }
         }
 
         public string Caption
         {
-            get { return "放大"; }
+            get { return "全屏"; }
         }
 
         public void OnClick()
         {
-            Rectangle rect = _map.Extent;
-            rect.ScaleRectangle(.5);
-            _map.Extent = rect;
+            _map.Extent = _map.FullExtent;
         }
 
         public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
