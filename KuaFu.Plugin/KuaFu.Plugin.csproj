@@ -54,6 +54,7 @@
     <Compile Include="ICommand.cs" />
     <Compile Include="IItemDef.cs" />
     <Compile Include="IPlugin.cs" />
+    <Compile Include="ItemDef.cs" />
     <Compile Include="ITool.cs" />
     <Compile Include="PluginHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
