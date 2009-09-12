@@ -53,9 +53,11 @@
     <Compile Include="IApplication.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IItemDef.cs" />
+    <Compile Include="IMenuDef.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="ItemDef.cs" />
     <Compile Include="ITool.cs" />
+    <Compile Include="IToolBarDef.cs" />
     <Compile Include="PluginHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
