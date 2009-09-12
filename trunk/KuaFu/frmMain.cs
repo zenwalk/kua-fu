@@ -12,15 +12,17 @@ using KuaFu.Plugin;
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using Janus.Windows.UI.CommandBars;
 
 namespace KuaFu
 {
     public partial class frmMain : Form
     {
         IApplication _application = null;
-        
+
         Dictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
         Dictionary<string, ITool> tools = new Dictionary<string, ITool>();
+        Dictionary<string, IToolBarDef> toolbars = new Dictionary<string, IToolBarDef>();
 
         ITool _tool; //当前使用的ITool
 
@@ -118,6 +120,13 @@ namespace KuaFu
             }
 
 
+            IToolBarDef standard = new KuaFu.Plugin.Standard.StandardToolbar();
+            toolbars.Add(standard.Name, standard);
+
+            CreateUICommand(cmds, tools);
+            CreateToolbars(toolbars);
+
+
             showSplashThread.Abort();
             showSplashThread.Join();
             showSplashThread = null;
@@ -152,6 +161,57 @@ namespace KuaFu
             _tool.OnMouseDown(e.button, e.shift, e.x, e.y);
         }
 
-    }
+        private void CreateToolbars(Dictionary<string, IToolBarDef> toolbars)
+        {
+            foreach (var pair in toolbars)
+            {
+                IToolBarDef t = pair.Value;
+                UICommandBar UIToolbar = new UICommandBar();
+                UIToolbar.CommandManager = this.uiCommandManager;
+                UIToolbar.CommandsStyle = CommandStyle.TextImage;
+                UIToolbar.Name = t.Name;
+                UIToolbar.Text = t.Caption;
 
+                ItemDef itemDef = new ItemDef();
+                for (int i = 0; i < t.ItemCount; i++)
+                {
+                    t.GetItemInfo(i, itemDef);
+                    UICommand UICmd = null;
+                    try
+                    {
+                        UICmd = this.uiCommandManager.Commands[itemDef.ID];
+                    }
+                    catch (Exception)
+                    {
+                    }
+                    if (UICmd != null)
+                    {
+                        if (itemDef.Group)
+                        {
+                            UIToolbar.Commands.AddSeparator();
+                        }
+                        UIToolbar.Commands.Add(UICmd);
+                    }
+                }
+            }
+        }
+
+        private void CreateUICommand(Dictionary<string, ICommand> cmds, Dictionary<string, ITool> tools)
+        {
+            foreach (var pair in cmds)
+            {
+                UICommand UICmd = new UICommand();
+                UICmd.Text = pair.Value.Caption;
+                UICmd.Key = pair.Value.Name;
+                pair.Value.OnCreate(this._application.Map);
+                UICmd.Click += new CommandEventHandler(UICommand_Click);
+                this.uiCommandManager.Commands.Add(UICmd);
+            }
+        }
+
+        void UICommand_Click(object sender, CommandEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
