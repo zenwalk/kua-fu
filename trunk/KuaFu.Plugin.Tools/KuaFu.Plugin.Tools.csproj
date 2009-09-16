@@ -54,6 +54,7 @@
     <Compile Include="FullExtent.cs" />
     <Compile Include="PanClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolTools.cs" />
     <Compile Include="ZoomIn.cs" />
     <Compile Include="ZoomInClass.cs" />
   </ItemGroup>
