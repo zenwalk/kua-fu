@@ -8,44 +8,40 @@ namespace KuaFu.Plugin
 {
     public class Application : KuaFu.Plugin.IApplication
     {
-        string _name;
-        AxMap _map;
-        string _caption;
-        string _currentTool;
-        Form _mainForm;
 
         #region IApplication Members
 
         string IApplication.Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get;
+            set;
         }
 
         AxMap IApplication.Map
         {
-            get { return _map; }
-            set { _map = value; }
+            get;
+            set;
         }
 
         public string Caption
         {
-            get { return _caption; }
-            set { _caption = value; }
+            get;
+            set;
         }
 
         public string CurrentTool
         {
-            get { return _currentTool; }
-            set { _currentTool = value; }
+            get;
+            set;
         }
 
         public System.Windows.Forms.Form MainForm
         {
-            get { return _mainForm; }
-            set { _mainForm = value; }
+            get;
+            set;
         }
 
         #endregion
+
     }
 }

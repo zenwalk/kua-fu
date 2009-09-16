@@ -31,13 +31,14 @@ namespace KuaFu
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.uiCommandManager = new Janus.Windows.UI.CommandBars.UICommandManager(this.components);
-            this.TopRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
-            this.LeftRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
-            this.RightRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
             this.BottomRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
             this.MainMenu = new Janus.Windows.UI.CommandBars.UICommandBar();
+            this.LeftRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
+            this.RightRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
+            this.TopRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
             this.uiStatusBar = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.uiPanelManager = new Janus.Windows.UI.Dock.UIPanelManager(this.components);
+            this.uiPanelGroup1 = new Janus.Windows.UI.Dock.UIPanelGroup();
             this.TOCPanel = new Janus.Windows.UI.Dock.UIPanelGroup();
             this.LayerPanel = new Janus.Windows.UI.Dock.UIPanel();
             this.LayerPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
@@ -45,18 +46,19 @@ namespace KuaFu
             this.ProperPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
             this.DataPanel = new Janus.Windows.UI.Dock.UIPanel();
             this.DataPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
-            this.uiPanelGroup1 = new Janus.Windows.UI.Dock.UIPanelGroup();
             this.MapContainer = new Janus.Windows.UI.Dock.UIPanel();
             this.MapContainerContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
             this.axMap1 = new ESRI.MapObjects2.Core.AxMap();
             ((System.ComponentModel.ISupportInitialize)(this.uiCommandManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopRebar1)).BeginInit();
-            this.TopRebar1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LeftRebar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RightRebar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BottomRebar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LeftRebar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RightRebar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TopRebar1)).BeginInit();
+            this.TopRebar1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiPanelManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiPanelGroup1)).BeginInit();
+            this.uiPanelGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOCPanel)).BeginInit();
             this.TOCPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPanel)).BeginInit();
@@ -65,8 +67,6 @@ namespace KuaFu
             this.ProperPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataPanel)).BeginInit();
             this.DataPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiPanelGroup1)).BeginInit();
-            this.uiPanelGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapContainer)).BeginInit();
             this.MapContainer.SuspendLayout();
             this.MapContainerContainer.SuspendLayout();
@@ -84,16 +84,24 @@ namespace KuaFu
             this.uiCommandManager.RightRebar = this.RightRebar1;
             this.uiCommandManager.TopRebar = this.TopRebar1;
             // 
-            // TopRebar1
+            // BottomRebar1
             // 
-            this.TopRebar1.CommandBars.AddRange(new Janus.Windows.UI.CommandBars.UICommandBar[] {
-            this.MainMenu});
-            this.TopRebar1.CommandManager = this.uiCommandManager;
-            this.TopRebar1.Controls.Add(this.MainMenu);
-            this.TopRebar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopRebar1.Location = new System.Drawing.Point(0, 0);
-            this.TopRebar1.Name = "TopRebar1";
-            this.TopRebar1.Size = new System.Drawing.Size(896, 26);
+            this.BottomRebar1.CommandManager = this.uiCommandManager;
+            this.BottomRebar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomRebar1.Location = new System.Drawing.Point(0, 460);
+            this.BottomRebar1.Name = "BottomRebar1";
+            this.BottomRebar1.Size = new System.Drawing.Size(896, 0);
+            // 
+            // MainMenu
+            // 
+            this.MainMenu.CommandBarType = Janus.Windows.UI.CommandBars.CommandBarType.Menu;
+            this.MainMenu.CommandManager = this.uiCommandManager;
+            this.MainMenu.Key = "MainMenu";
+            this.MainMenu.Location = new System.Drawing.Point(0, 0);
+            this.MainMenu.Name = "MainMenu";
+            this.MainMenu.RowIndex = 0;
+            this.MainMenu.Size = new System.Drawing.Size(896, 26);
+            this.MainMenu.Text = "MainMenu";
             // 
             // LeftRebar1
             // 
@@ -111,24 +119,16 @@ namespace KuaFu
             this.RightRebar1.Name = "RightRebar1";
             this.RightRebar1.Size = new System.Drawing.Size(0, 460);
             // 
-            // BottomRebar1
+            // TopRebar1
             // 
-            this.BottomRebar1.CommandManager = this.uiCommandManager;
-            this.BottomRebar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomRebar1.Location = new System.Drawing.Point(0, 460);
-            this.BottomRebar1.Name = "BottomRebar1";
-            this.BottomRebar1.Size = new System.Drawing.Size(896, 0);
-            // 
-            // MainMenu
-            // 
-            this.MainMenu.CommandBarType = Janus.Windows.UI.CommandBars.CommandBarType.Menu;
-            this.MainMenu.CommandManager = this.uiCommandManager;
-            this.MainMenu.Key = "CommandBar1";
-            this.MainMenu.Location = new System.Drawing.Point(0, 0);
-            this.MainMenu.Name = "MainMenu";
-            this.MainMenu.RowIndex = 0;
-            this.MainMenu.Size = new System.Drawing.Size(896, 26);
-            this.MainMenu.Text = "CommandBar1";
+            this.TopRebar1.CommandBars.AddRange(new Janus.Windows.UI.CommandBars.UICommandBar[] {
+            this.MainMenu});
+            this.TopRebar1.CommandManager = this.uiCommandManager;
+            this.TopRebar1.Controls.Add(this.MainMenu);
+            this.TopRebar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopRebar1.Location = new System.Drawing.Point(0, 0);
+            this.TopRebar1.Name = "TopRebar1";
+            this.TopRebar1.Size = new System.Drawing.Size(896, 26);
             // 
             // uiStatusBar
             // 
@@ -165,7 +165,18 @@ namespace KuaFu
             this.uiPanelManager.AddDockPanelInfo(new System.Guid("4787b434-5991-47fe-8d72-1dbcbec668fd"), new System.Guid("49db4403-ba40-4f69-ad60-2df5cc58336e"), 202, true);
             this.uiPanelManager.AddDockPanelInfo(new System.Guid("c5dc245e-27bb-4661-bac1-f43deda18e30"), Janus.Windows.UI.Dock.PanelDockStyle.Fill, new System.Drawing.Size(690, 405), true);
             this.uiPanelManager.AddFloatingPanelInfo(new System.Guid("4787b434-5991-47fe-8d72-1dbcbec668fd"), new System.Drawing.Point(70, 418), new System.Drawing.Size(200, 200), false);
+            this.uiPanelManager.AddFloatingPanelInfo(new System.Guid("346d1611-e846-4b3d-b492-1ac87ad87e8b"), Janus.Windows.UI.Dock.PanelGroupStyle.Tab, true, new System.Drawing.Point(-1, -1), new System.Drawing.Size(-1, -1), false);
+            this.uiPanelManager.AddFloatingPanelInfo(new System.Guid("27461a2b-8224-4215-b30a-520bb553616e"), new System.Drawing.Point(-1, -1), new System.Drawing.Size(-1, -1), false);
+            this.uiPanelManager.AddFloatingPanelInfo(new System.Guid("d6e840a7-1b13-47e5-a7cb-7c2ce8912614"), new System.Drawing.Point(-1, -1), new System.Drawing.Size(-1, -1), false);
+            this.uiPanelManager.AddFloatingPanelInfo(new System.Guid("c5dc245e-27bb-4661-bac1-f43deda18e30"), new System.Drawing.Point(-1, -1), new System.Drawing.Size(-1, -1), false);
             this.uiPanelManager.EndPanelInfo();
+            // 
+            // uiPanelGroup1
+            // 
+            this.uiPanelGroup1.Location = new System.Drawing.Point(3, 29);
+            this.uiPanelGroup1.Name = "uiPanelGroup1";
+            this.uiPanelGroup1.Size = new System.Drawing.Size(200, 405);
+            this.uiPanelGroup1.TabIndex = 9;
             // 
             // TOCPanel
             // 
@@ -226,13 +237,6 @@ namespace KuaFu
             this.DataPanelContainer.Size = new System.Drawing.Size(194, 176);
             this.DataPanelContainer.TabIndex = 0;
             // 
-            // uiPanelGroup1
-            // 
-            this.uiPanelGroup1.Location = new System.Drawing.Point(3, 29);
-            this.uiPanelGroup1.Name = "uiPanelGroup1";
-            this.uiPanelGroup1.Size = new System.Drawing.Size(200, 405);
-            this.uiPanelGroup1.TabIndex = 9;
-            // 
             // MapContainer
             // 
             this.MapContainer.CaptionVisible = Janus.Windows.UI.InheritableBoolean.False;
@@ -271,16 +275,18 @@ namespace KuaFu
             this.Controls.Add(this.TopRebar1);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "¿ä¸¸ GIS";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiCommandManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopRebar1)).EndInit();
-            this.TopRebar1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.LeftRebar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RightRebar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BottomRebar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LeftRebar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RightRebar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TopRebar1)).EndInit();
+            this.TopRebar1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiPanelManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiPanelGroup1)).EndInit();
+            this.uiPanelGroup1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TOCPanel)).EndInit();
             this.TOCPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LayerPanel)).EndInit();
@@ -289,8 +295,6 @@ namespace KuaFu
             this.ProperPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataPanel)).EndInit();
             this.DataPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiPanelGroup1)).EndInit();
-            this.uiPanelGroup1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MapContainer)).EndInit();
             this.MapContainer.ResumeLayout(false);
             this.MapContainerContainer.ResumeLayout(false);

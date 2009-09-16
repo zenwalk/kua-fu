@@ -51,9 +51,12 @@ namespace KuaFu
         {
             //处理欢迎窗体
             //create thread to show splash
-            Thread showSplashThread = new Thread(new ThreadStart(ShowSplash));
-            showSplashThread.Start();
 
+
+            //暂时注释掉处理splash的代码
+            //Thread showSplashThread = new Thread(new ThreadStart(ShowSplash));
+            //showSplashThread.Start();
+            
             //Time consumed here
 
             InitializeComponent();
@@ -94,6 +97,8 @@ namespace KuaFu
             cmd.OnCreate(_application.Map);
             cmds.Add(cmd.Name, cmd);
 
+            
+
             ITool tool;
             tool = new KuaFu.Plugin.Tools.ZoomIn();
             tool.OnCreate(_application.Map);
@@ -119,17 +124,22 @@ namespace KuaFu
                 button.Click += new EventHandler(Tool_Click);
             }
 
+            {
+                IToolBarDef standard = new KuaFu.Plugin.Standard.StandardToolbar();
+                toolbars.Add(standard.Name, standard);
 
-            IToolBarDef standard = new KuaFu.Plugin.Standard.StandardToolbar();
-            toolbars.Add(standard.Name, standard);
+
+                IToolBarDef _tool = new KuaFu.Plugin.Tools.ToolToolbar();
+                toolbars.Add(_tool.Name, _tool);
+            }
 
             CreateUICommand(cmds, tools);
             CreateToolbars(toolbars);
 
 
-            showSplashThread.Abort();
-            showSplashThread.Join();
-            showSplashThread = null;
+            //showSplashThread.Abort();
+            //showSplashThread.Join();
+            //showSplashThread = null;
 
         }
 
@@ -207,11 +217,28 @@ namespace KuaFu
                 UICmd.Click += new CommandEventHandler(UICommand_Click);
                 this.uiCommandManager.Commands.Add(UICmd);
             }
+            foreach (var pair in tools)
+            {
+                UICommand UICmd = new UICommand();
+                UICmd.Text = pair.Value.Caption;
+                UICmd.Key = pair.Value.Name;
+                pair.Value.OnCreate(this._application.Map);
+                UICmd.Click += new CommandEventHandler(UITool_Click);
+                this.uiCommandManager.Commands.Add(UICmd);
+            }
+        }
+
+        void UITool_Click(object sender, CommandEventArgs e)
+        {
+            ITool tool = tools[(sender as UICommand).Key];
+            tool.OnClick();
         }
 
         void UICommand_Click(object sender, CommandEventArgs e)
         {
-            throw new NotImplementedException();
+            ICommand cmd = cmds[(sender as UICommand).Key];
+            Thread thread = new Thread(new ThreadStart(cmd.OnClick));
+            thread.Start();
         }
     }
 }
