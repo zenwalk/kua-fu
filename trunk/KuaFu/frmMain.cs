@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 using ESRI.MapObjects2.Core;
-using KuaFu.Plugin;
 using KuaFu.Plugin;
 using System.IO;
 using System.Reflection;
@@ -63,7 +58,7 @@ namespace KuaFu
 
             _application = new KuaFu.Plugin.Application();
             _application.Name = "Kua Fu";
-            _application.Map = this.axMap1;
+            _application.Map = this.axMap;
 
             // 以下的代码的灵感来自 Effective C# : 利用特性简化发射
 
@@ -97,14 +92,28 @@ namespace KuaFu
             cmd.OnCreate(_application.Map);
             cmds.Add(cmd.Name, cmd);
 
-            
+            cmd = new KuaFu.Plugin.Tools.FixedZoomInClass();
+            cmd.OnCreate(_application.Map);
+            cmds.Add(cmd.Name, cmd);
+
+            cmd = new KuaFu.Plugin.Tools.FixedZoomOutClass();
+            cmd.OnCreate(_application.Map);
+            cmds.Add(cmd.Name, cmd);
 
             ITool tool;
-            tool = new KuaFu.Plugin.Tools.ZoomIn();
+            tool = new KuaFu.Plugin.Tools.ZoomInClass();
+            tool.OnCreate(_application.Map);
+            tools.Add(tool.Name, tool);
+
+            tool = new KuaFu.Plugin.Tools.ZoomOutClass();
             tool.OnCreate(_application.Map);
             tools.Add(tool.Name, tool);
 
             tool = new KuaFu.Plugin.Tools.PanClass();
+            tool.OnCreate(_application.Map);
+            tools.Add(tool.Name, tool);
+
+            tool = new KuaFu.Plugin.Tools.IdentifyClass();
             tool.OnCreate(_application.Map);
             tools.Add(tool.Name, tool);
 
@@ -114,14 +123,14 @@ namespace KuaFu
                 //MessageBox.Show(string.Format("{0}, {1}", pair.Key, pair.Value));
                 ToolStripItem button = new ToolStripButton(pair.Value.Caption);
                 button.Name = pair.Value.Name;
-                button.Click += new EventHandler(Command_Click);
+                //button.Click += new EventHandler(Command_Click);
             }
 
             foreach (var pair in tools)
             {
                 ToolStripItem button = new ToolStripButton(pair.Value.Caption);
                 button.Name = pair.Value.Name;
-                button.Click += new EventHandler(Tool_Click);
+                //button.Click += new EventHandler(Tool_Click);
             }
 
             {
@@ -137,35 +146,47 @@ namespace KuaFu
             CreateToolbars(toolbars);
 
 
+            UICommand uicmd = new UICommand("exit","退出");
+            uicmd.Click += new CommandEventHandler(test);
+
+            MainMenu.Commands.Add(uicmd);
+
+
+
             //showSplashThread.Abort();
             //showSplashThread.Join();
             //showSplashThread = null;
 
         }
 
-        void Tool_Click(object sender, EventArgs e)
+        void test(object sender, CommandEventArgs e)
         {
-            //string s = (sender as ToolStripItem).Name;
-
-            ITool tool = tools[(sender as ToolStripItem).Name];
-            this._tool = tool;
-            Thread thread = new Thread(new ThreadStart(tool.OnClick));
-            thread.Start();
+            System.Windows.Forms.Application.Exit();
         }
 
-        void Command_Click(object sender, EventArgs e)
-        {
-            ICommand cmd = cmds[(sender as ToolStripItem).Name];
-            Thread thread = new Thread(new ThreadStart(cmd.OnClick));
-            thread.Start();
-        }
+        //void Tool_Click(object sender, EventArgs e)
+        //{
+        //    //string s = (sender as ToolStripItem).Name;
+
+        //    ITool tool = tools[(sender as ToolStripItem).Name];
+        //    this._tool = tool;
+        //    Thread thread = new Thread(new ThreadStart(tool.OnClick));
+        //    thread.Start();
+        //}
+
+        //void Command_Click(object sender, EventArgs e)
+        //{
+        //    ICommand cmd = cmds[(sender as ToolStripItem).Name];
+        //    Thread thread = new Thread(new ThreadStart(cmd.OnClick));
+        //    thread.Start();
+        //}
 
         private void frmMain_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void axMap1_MouseDownEvent(object sender, MouseDownEventArgs e)
+        private void axMap_MouseDownEvent(object sender, MouseDownEventArgs e)
         {
             //tool.OnMouseDown(e.button, e.shift, e.x, e.y);
             _tool.OnMouseDown(e.button, e.shift, e.x, e.y);
@@ -231,6 +252,7 @@ namespace KuaFu
         void UITool_Click(object sender, CommandEventArgs e)
         {
             ITool tool = tools[(sender as UICommand).Key];
+            this._tool = tool;
             tool.OnClick();
         }
 
@@ -239,6 +261,11 @@ namespace KuaFu
             ICommand cmd = cmds[(sender as UICommand).Key];
             Thread thread = new Thread(new ThreadStart(cmd.OnClick));
             thread.Start();
+        }
+
+        private void axMap_MouseMoveEvent(object sender, MouseMoveEventArgs e)
+        {
+            _tool.OnMouseMove(e.button, e.shift, e.x, e.y);
         }
     }
 }
