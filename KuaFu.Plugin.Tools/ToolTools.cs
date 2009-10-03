@@ -21,7 +21,7 @@ namespace KuaFu.Plugin.Tools
 
         public long ItemCount
         {
-            get { return 3; }
+            get { return 7; }
         }
 
         public void GetItemInfo(int pos, IItemDef itemDef)
@@ -34,11 +34,27 @@ namespace KuaFu.Plugin.Tools
                     break;
                 case 1:
                     itemDef.ID = "Pan";
-                    itemDef.Group = false;
+                    itemDef.Group = true;
                     break;
                 case 2:
                     itemDef.ID = "ZoomIn";
                     itemDef.Group = false;
+                    break;
+                case 3:
+                    itemDef.ID = "ZoomOut";
+                    itemDef.Group = false;
+                    break;
+                case 4:
+                    itemDef.ID = "FixedZoomIn";
+                    itemDef.Group = true;
+                    break;
+                case 5:
+                    itemDef.ID = "FixedZoomOut";
+                    itemDef.Group = false;
+                    break;
+                case 6:
+                    itemDef.ID = "Identify";
+                    itemDef.Group = true;
                     break;
                 default:
                     break;

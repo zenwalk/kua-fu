@@ -48,7 +48,7 @@ namespace KuaFu
             this.DataPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
             this.MapContainer = new Janus.Windows.UI.Dock.UIPanel();
             this.MapContainerContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
-            this.axMap1 = new ESRI.MapObjects2.Core.AxMap();
+            this.axMap = new ESRI.MapObjects2.Core.AxMap();
             ((System.ComponentModel.ISupportInitialize)(this.uiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BottomRebar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).BeginInit();
@@ -70,7 +70,7 @@ namespace KuaFu
             ((System.ComponentModel.ISupportInitialize)(this.MapContainer)).BeginInit();
             this.MapContainer.SuspendLayout();
             this.MapContainerContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axMap1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axMap)).BeginInit();
             this.SuspendLayout();
             // 
             // uiCommandManager
@@ -249,20 +249,22 @@ namespace KuaFu
             // 
             // MapContainerContainer
             // 
-            this.MapContainerContainer.Controls.Add(this.axMap1);
+            this.MapContainerContainer.Controls.Add(this.axMap);
             this.MapContainerContainer.Location = new System.Drawing.Point(1, 1);
             this.MapContainerContainer.Name = "MapContainerContainer";
             this.MapContainerContainer.Size = new System.Drawing.Size(688, 403);
             this.MapContainerContainer.TabIndex = 0;
             // 
-            // axMap1
+            // axMap
             // 
-            this.axMap1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axMap1.Location = new System.Drawing.Point(0, 0);
-            this.axMap1.Name = "axMap1";
-            this.axMap1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMap1.OcxState")));
-            this.axMap1.Size = new System.Drawing.Size(688, 403);
-            this.axMap1.TabIndex = 3;
+            this.axMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axMap.Location = new System.Drawing.Point(0, 0);
+            this.axMap.Name = "axMap";
+            this.axMap.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMap.OcxState")));
+            this.axMap.Size = new System.Drawing.Size(688, 403);
+            this.axMap.TabIndex = 3;
+            this.axMap.MouseDownEvent += new ESRI.MapObjects2.Core.MouseDownEventHandler(this.axMap_MouseDownEvent);
+            this.axMap.MouseMoveEvent += new ESRI.MapObjects2.Core.MouseMoveEventHandler(this.axMap_MouseMoveEvent);
             // 
             // frmMain
             // 
@@ -298,7 +300,7 @@ namespace KuaFu
             ((System.ComponentModel.ISupportInitialize)(this.MapContainer)).EndInit();
             this.MapContainer.ResumeLayout(false);
             this.MapContainerContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axMap1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axMap)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -323,7 +325,7 @@ namespace KuaFu
         private Janus.Windows.UI.Dock.UIPanelGroup uiPanelGroup1;
         private Janus.Windows.UI.Dock.UIPanel DataPanel;
         private Janus.Windows.UI.Dock.UIPanelInnerContainer DataPanelContainer;
-        private ESRI.MapObjects2.Core.AxMap axMap1;
+        private ESRI.MapObjects2.Core.AxMap axMap;
 
     }
 }

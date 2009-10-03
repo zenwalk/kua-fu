@@ -1,74 +1,69 @@
-using System;
+锘縰sing System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
-
 using ESRI.MapObjects2.Core;
 
 namespace KuaFu.Plugin.Tools
 {
-    public class PanClass : KuaFu.Plugin.ITool
+    public class ZoomOutClass : ITool
     {
         AxMap _map;
 
-        #region ITool 成员
+        #region ITool 鎴愬憳
 
         public System.Drawing.Bitmap Bitmap
         {
-            get { return null; }
-            /*get { return new System.Drawing.Bitmap(""); }*/
+            get { throw new NotImplementedException(); }
         }
 
-        public string Caption { get { return "移动"; } }
+        public string Caption
+        {
+            get { return "缂╁皬"; }
+        }
 
         public string Category
         {
-            get { return "工具"; }
+            get { throw new NotImplementedException(); }
         }
 
         public bool Checked
         {
-            get { return true; }
+            get { throw new NotImplementedException(); }
         }
 
         public bool Enabled
         {
-            get { return true; }
+            get { throw new NotImplementedException(); }
         }
 
         public int HelpContextId
         {
-            get { return 0; }
+            get { throw new NotImplementedException(); }
         }
 
         public string HelpFile
         {
-            get { return ""; }
+            get { throw new NotImplementedException(); }
         }
 
         public string Message
         {
-            get { return ""; }
+            get { throw new NotImplementedException(); }
         }
 
         public string Name
         {
-            get { return "Pan"; }
+            get { return "ZoomOut"; }
         }
 
         public void OnClick()
         {
-            // nothing
-        }
-
-        public void OnCreate(AxMap map)
-        {
-            _map = map;
+            
         }
 
         public string Tooltip
         {
-            get { return ""; }
+            get { throw new NotImplementedException(); }
         }
 
         public int Cursor
@@ -98,7 +93,9 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            _map.Pan();
+            Rectangle rect = _map.TrackRectangle();
+            _map.Extent = rect;
+
         }
 
         public void OnMouseUp(int button, int shift, int x, int y)
@@ -121,8 +118,11 @@ namespace KuaFu.Plugin.Tools
             throw new NotImplementedException();
         }
 
+        public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
+        {
+            _map = map;
+        }
+
         #endregion
     }
 }
-
-

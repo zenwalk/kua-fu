@@ -52,11 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FullExtent.cs" />
+    <Compile Include="IdentifyClass.cs" />
     <Compile Include="PanClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolTools.cs" />
-    <Compile Include="ZoomIn.cs" />
     <Compile Include="ZoomInClass.cs" />
+    <Compile Include="FixedZoomInClass.cs" />
+    <Compile Include="ZoomOutClass.cs" />
+    <Compile Include="FixedZoomOutClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KuaFu.Plugin\KuaFu.Plugin.csproj">

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
+
 using ESRI.MapObjects2.Core;
 
 namespace KuaFu.Plugin.Tools
 {
-    public class ZoomIn : ITool
+    public class IdentifyClass : KuaFu.Plugin.ITool
     {
         AxMap _map;
 
@@ -13,57 +15,60 @@ namespace KuaFu.Plugin.Tools
 
         public System.Drawing.Bitmap Bitmap
         {
-            get { throw new NotImplementedException(); }
+            get { return null; }
+            /*get { return new System.Drawing.Bitmap(""); }*/
         }
 
-        public string Caption
-        {
-            get { return "放大"; }
-        }
+        public string Caption { get { return "识别"; } }
 
         public string Category
         {
-            get { throw new NotImplementedException(); }
+            get { return "工具"; }
         }
 
         public bool Checked
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         public bool Enabled
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         public int HelpContextId
         {
-            get { throw new NotImplementedException(); }
+            get { return 0; }
         }
 
         public string HelpFile
         {
-            get { throw new NotImplementedException(); }
+            get { return ""; }
         }
 
         public string Message
         {
-            get { throw new NotImplementedException(); }
+            get { return ""; }
         }
 
         public string Name
         {
-            get { return "ZoomIn"; }
+            get { return "Identify"; }
         }
 
         public void OnClick()
         {
-            
+            // nothing
+        }
+
+        public void OnCreate(AxMap map)
+        {
+            _map = map;
         }
 
         public string Tooltip
         {
-            get { throw new NotImplementedException(); }
+            get { return ""; }
         }
 
         public int Cursor
@@ -93,9 +98,7 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            Rectangle rect = _map.TrackRectangle();
-            _map.Extent = rect;
-
+            
         }
 
         public void OnMouseUp(int button, int shift, int x, int y)
@@ -118,11 +121,8 @@ namespace KuaFu.Plugin.Tools
             throw new NotImplementedException();
         }
 
-        public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
-        {
-            _map = map;
-        }
-
         #endregion
     }
 }
+
+
