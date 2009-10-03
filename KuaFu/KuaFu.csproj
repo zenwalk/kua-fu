@@ -40,6 +40,7 @@
     <Reference Include="ESRI.MapObjects2.MemTable, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86" />
     <Reference Include="Janus.Windows.Common.v3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=04fbad2612a436bd, processorArchitecture=MSIL" />
     <Reference Include="Janus.Windows.UI.v3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=04fbad2612a436bd, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -51,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationWithSplash.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>

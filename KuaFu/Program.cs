@@ -10,11 +10,14 @@ namespace KuaFu
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new frmMain());
+
+            ApplicationWithSplash _app = new ApplicationWithSplash();
+            _app.Run(args);
         }
     }
 }
