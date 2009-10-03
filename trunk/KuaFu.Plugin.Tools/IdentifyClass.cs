@@ -98,7 +98,9 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
+
             
+
         }
 
         public void OnMouseUp(int button, int shift, int x, int y)
