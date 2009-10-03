@@ -10,35 +10,30 @@ namespace KuaFu.Plugin.Standard
     public class AddShapeClass : KuaFu.Plugin.ICommand
     {
         private AxMap _map = null;
+        ESRI.MapObjects2.Core.DataConnection dc;
+        ESRI.MapObjects2.Core.MapLayer lyr;
+        ESRI.MapObjects2.Core.GeoDataset gds;
+
+        public AddShapeClass()
+        {
+            dc = new ESRI.MapObjects2.Core.DataConnectionClass();
+            lyr = new ESRI.MapObjects2.Core.MapLayerClass();
+        }
 
         #region ICommand Members
 
-        public string Name
-        {
-            get
-            {
-                return "AddShape";
-            }
-        }
+        public string Name { get { return "AddShape"; } }
 
-        public string Caption
-        {
-            get
-            {
-                return "Ìí¼ÓShapefile";
-            }
-        }
+        public string Caption { get { return "Ìí¼ÓShapefile"; } }
 
         public void OnClick()
         {
             try
             {
-                ESRI.MapObjects2.Core.DataConnection dc = new ESRI.MapObjects2.Core.DataConnectionClass();
                 dc.Database = @"D:\ESRI\ESRIDATA\WORLD";
                 dc.Connect();
-
-                ESRI.MapObjects2.Core.MapLayer lyr = new ESRI.MapObjects2.Core.MapLayerClass();
-                ESRI.MapObjects2.Core.GeoDataset gds = dc.FindGeoDataset("CNTRY92.SHP");
+                
+                gds = dc.FindGeoDataset("CNTRY92.SHP");
                 gds.AllowSharing = true;
                 if (gds != null)
                 {

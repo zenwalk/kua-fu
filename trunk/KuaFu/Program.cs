@@ -12,12 +12,21 @@ namespace KuaFu
         [STAThread]
         static void Main(string[] args)
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmMain());
+            bool showSplash = false;
 
-            ApplicationWithSplash _app = new ApplicationWithSplash();
-            _app.Run(args);
+            if (showSplash)
+            {
+                ApplicationWithSplash _app = new ApplicationWithSplash();
+                _app.Run(args);
+            }
+            else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new frmMain());
+            }
+
+            
         }
     }
 }
