@@ -29,17 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSplash));
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(0, 293);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(450, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 0;
             // 
             // frmSplash
             // 
@@ -47,7 +37,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(450, 316);
-            this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSplash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -60,7 +49,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ProgressBar progressBar1;
 
     }
 }
