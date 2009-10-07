@@ -98,8 +98,10 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-
-            
+            Point pt = _map.ToMapPoint(x, y);
+            MapLayer lyr = _map.Layers.Item(0) as MapLayer;
+            Recordset recset = lyr.SearchShape(pt, SearchMethodConstants.moAreaIntersect, "");
+            MessageBox.Show(recset.Count.ToString());
 
         }
 
