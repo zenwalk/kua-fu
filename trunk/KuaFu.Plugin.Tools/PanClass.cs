@@ -9,9 +9,13 @@ namespace KuaFu.Plugin.Tools
 {
     public class PanClass : KuaFu.Plugin.ITool
     {
-        AxMap _map;
+        IApplication _app;
 
         #region ITool ≥…‘±
+        
+        public void AfterTrackingLayerDraw(object sender, AfterTrackingLayerDrawEventArgs e)
+        {
+        }
 
         public System.Drawing.Bitmap Bitmap
         {
@@ -61,9 +65,9 @@ namespace KuaFu.Plugin.Tools
             // nothing
         }
 
-        public void OnCreate(AxMap map)
+        public void OnCreate(IApplication app)
         {
-            _map = map;
+            _app = app;
         }
 
         public string Tooltip
@@ -98,7 +102,7 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            _map.Pan();
+            _app.Map.Pan();
         }
 
         public void OnMouseUp(int button, int shift, int x, int y)
@@ -120,6 +124,11 @@ namespace KuaFu.Plugin.Tools
         {
             throw new NotImplementedException();
         }
+
+        public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
+        }
+
 
         #endregion
     }

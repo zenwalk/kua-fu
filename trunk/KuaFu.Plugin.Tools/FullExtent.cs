@@ -7,9 +7,13 @@ namespace KuaFu.Plugin.Tools
 {
     public class FullExtent : ICommand
     {
-        AxMap _map;
+        IApplication _app;
 
         #region ICommand 成员
+
+        public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
+        }
 
         public string Name
         {
@@ -23,12 +27,12 @@ namespace KuaFu.Plugin.Tools
 
         public void OnClick()
         {
-            _map.Extent = _map.FullExtent;
+            _app.Map.Extent = _app.Map.FullExtent;
         }
 
-        public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
+        public void OnCreate(IApplication app)
         {
-            _map = map;
+            _app = app;
         }
 
         #endregion

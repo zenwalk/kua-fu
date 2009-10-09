@@ -9,7 +9,13 @@ namespace KuaFu.Plugin.Tools
 {
     public class IdentifyClass : KuaFu.Plugin.ITool
     {
-        AxMap _map;
+        IApplication _app;
+        private MapLayer lyr;
+
+
+        public IdentifyClass()
+        {
+        }
 
         #region ITool 成员
 
@@ -61,9 +67,10 @@ namespace KuaFu.Plugin.Tools
             // nothing
         }
 
-        public void OnCreate(AxMap map)
+        public void OnCreate(IApplication app)
         {
-            _map = map;
+            //_map = map;
+            _app = app;
         }
 
         public string Tooltip
@@ -93,15 +100,71 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseMove(int button, int shift, int x, int y)
         {
-            throw new NotImplementedException();
+            
         }
+
+        private Recordset selection;
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            Point pt = _map.ToMapPoint(x, y);
-            MapLayer lyr = _map.Layers.Item(0) as MapLayer;
-            Recordset recset = lyr.SearchShape(pt, SearchMethodConstants.moAreaIntersect, "");
-            MessageBox.Show(recset.Count.ToString());
+            Point pt = _app.Map.ToMapPoint(x, y);
+            selection = (_app.Map.Layers.Item(0) as MapLayer).SearchShape(pt, SearchMethodConstants.moPointInPolygon, "");
+            _app.Map.AfterTrackingLayerDraw += new AfterTrackingLayerDrawEventHandler(AfterTrackingLayerDraw);
+            _app.Map.TrackingLayer.Refresh(true, null);
+            //_app.Map.CtlRefresh();
+        }
+
+        public void AfterTrackingLayerDraw(object sender, AfterTrackingLayerDrawEventArgs e)
+        {
+            Symbol sym = new SymbolClass();
+            sym.SymbolType = SymbolTypeConstants.moFillSymbol;
+            sym.Style = 0;
+            sym.Color = 0;
+
+            selection.MoveFirst();
+
+            Field f = selection.Fields.Item("shape");
+            object o = f.Value;
+
+            _app.Map.DrawShape(o, sym);
+
+        }
+
+
+        public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
+            Symbol sym = new SymbolClass();
+            sym.SymbolType = SymbolTypeConstants.moFillSymbol;
+            sym.Style = 0;
+            sym.Color = 2;
+
+            selection.MoveFirst();
+
+            Field f = selection.Fields.Item("shape");
+            object o = f.Value;
+
+            _app.Map.DrawShape(o, sym);
+
+            //Polygon poly = fs.Item("shape").Value as Polygon;
+            
+
+            //if (selection != null)
+            //{
+            //    Point pt = new PointClass();
+            //    pt.X = 0;
+            //    pt.Y = 0;
+
+            //    stdole.StdFont font = new stdole.StdFontClass();
+            //    font.Name = "黑体";
+            //    font.Size = 50;
+
+            //    TextSymbol sym = new TextSymbolClass();
+            //    sym.Font = font;
+
+            //    _app.Map.DrawText("一剑霜寒十四州", pt, sym);
+
+            //    //_app.Map.DrawShape(poly, sym);
+            //}
 
         }
 
@@ -124,6 +187,8 @@ namespace KuaFu.Plugin.Tools
         {
             throw new NotImplementedException();
         }
+
+        
 
         #endregion
     }

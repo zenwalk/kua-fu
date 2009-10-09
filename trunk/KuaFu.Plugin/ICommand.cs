@@ -11,6 +11,7 @@ namespace KuaFu.Plugin
         string Name { get; }
         string Caption { get; }
         void OnClick();
-        void OnCreate(AxMap map);
+        void OnCreate(IApplication app);
+        void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e);
     }
 }

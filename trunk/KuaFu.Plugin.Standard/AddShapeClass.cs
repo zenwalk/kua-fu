@@ -9,7 +9,7 @@ namespace KuaFu.Plugin.Standard
 {
     public class AddShapeClass : KuaFu.Plugin.ICommand
     {
-        private AxMap _map = null;
+        IApplication _app;
         ESRI.MapObjects2.Core.DataConnection dc;
         ESRI.MapObjects2.Core.MapLayer lyr;
         ESRI.MapObjects2.Core.GeoDataset gds;
@@ -38,8 +38,8 @@ namespace KuaFu.Plugin.Standard
                 if (gds != null)
                 {
                     lyr.GeoDataset = gds;
-                    _map.Layers.Add((object)lyr);
-                    _map.CtlRefresh();
+                    _app.Map.Layers.Add((object)lyr);
+                    _app.Map.CtlRefresh();
                 }
             }
             catch (System.Runtime.InteropServices.COMException comEx)
@@ -67,9 +67,13 @@ namespace KuaFu.Plugin.Standard
             }
         }
 
-        public void OnCreate(AxMap map)
+        public void OnCreate(IApplication app)
         {
-            _map = map;
+            _app = app;
+        }
+
+        public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
         }
 
         #endregion

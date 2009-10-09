@@ -7,7 +7,7 @@ namespace KuaFu.Plugin.Standard
 {
     public class AddImageClass : ICommand
     {
-        AxMap _map;
+        IApplication _app;
 
         #region ICommand Members
 
@@ -25,12 +25,16 @@ namespace KuaFu.Plugin.Standard
         {
             ESRI.MapObjects2.Core.ImageLayer lyr = new ImageLayerClass();
             lyr.File = @"D:\ESRI\AV_GIS30\AVTUTOR\IA_DATA\palmsprings_IRS-1C.img";
-            _map.Layers.Add(lyr);
+            _app.Map.Layers.Add(lyr);
         }
 
-        public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
+        public void OnCreate(IApplication app)
         {
-            this._map = map;
+            _app = app;
+        }
+
+        public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
         }
 
         #endregion

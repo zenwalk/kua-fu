@@ -13,5 +13,6 @@ namespace KuaFu.Plugin
         string CurrentTool { get; set; }
         Form MainForm { get; set; }
         AxMap Map { get; set; }
+        Recordset Selection { get; set; }
     }
 }

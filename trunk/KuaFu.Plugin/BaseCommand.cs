@@ -11,7 +11,7 @@ namespace KuaFu.Plugin
     /// </summary>
     public class BaseCommand : ICommand
     {
-        private AxMap _map;
+        private IApplication _app;
 
         string _name = "name";
         string _caption = "caption";
@@ -33,9 +33,13 @@ namespace KuaFu.Plugin
             get { return _caption; }
         }
 
-        public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
+        public void OnCreate(IApplication app)
         {
-            _map = map;
+            _app = app;
+        }
+
+        public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
         }
 
         #endregion

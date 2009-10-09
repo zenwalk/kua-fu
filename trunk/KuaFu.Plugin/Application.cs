@@ -41,6 +41,12 @@ namespace KuaFu.Plugin
             set;
         }
 
+        public Recordset Selection
+        {
+            get;
+            set;
+        }
+
         #endregion
 
     }
