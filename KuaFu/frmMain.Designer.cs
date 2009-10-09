@@ -265,6 +265,8 @@ namespace KuaFu
             this.axMap.TabIndex = 3;
             this.axMap.MouseDownEvent += new ESRI.MapObjects2.Core.MouseDownEventHandler(this.axMap_MouseDownEvent);
             this.axMap.MouseMoveEvent += new ESRI.MapObjects2.Core.MouseMoveEventHandler(this.axMap_MouseMoveEvent);
+            this.axMap.AfterLayerDraw += new ESRI.MapObjects2.Core.AfterLayerDrawEventHandler(this.axMap_AfterLayerDraw);
+            this.axMap.AfterTrackingLayerDraw += new ESRI.MapObjects2.Core.AfterTrackingLayerDrawEventHandler(this.axMap_AfterTrackingLayerDraw);
             // 
             // frmMain
             // 

@@ -53,7 +53,7 @@ namespace KuaFu.Plugin
         /// 按钮产生是触发的方法
         /// </summary>
         /// <param name="hook">框架的宿主对象</param>
-        void OnCreate(AxMap map);
+        void OnCreate(IApplication app);
         /// <summary>
         /// 鼠标移到按钮上弹出的文字
         /// </summary>
@@ -119,5 +119,13 @@ namespace KuaFu.Plugin
         /// <param name="keyCode"></param>
         /// <param name="shift"></param>
         void OnKeyUp(int keyCode, int shift);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e);
+        void AfterTrackingLayerDraw(object sender, AfterTrackingLayerDrawEventArgs e);
     }
 }

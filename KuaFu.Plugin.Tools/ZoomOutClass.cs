@@ -7,9 +7,17 @@ namespace KuaFu.Plugin.Tools
 {
     public class ZoomOutClass : ITool
     {
-        AxMap _map;
+        IApplication _app;
 
         #region ITool 成员
+
+        public void AfterTrackingLayerDraw(object sender, AfterTrackingLayerDrawEventArgs e)
+        {
+        }
+
+        public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
+        }
 
         public System.Drawing.Bitmap Bitmap
         {
@@ -93,8 +101,8 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            Rectangle rect = _map.TrackRectangle();
-            _map.Extent = rect;
+            Rectangle rect = _app.Map.TrackRectangle();
+            _app.Map.Extent = rect;
 
         }
 
@@ -118,9 +126,9 @@ namespace KuaFu.Plugin.Tools
             throw new NotImplementedException();
         }
 
-        public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
+        public void OnCreate(IApplication app)
         {
-            _map = map;
+            _app = app;
         }
 
         #endregion

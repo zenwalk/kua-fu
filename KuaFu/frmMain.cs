@@ -81,40 +81,40 @@ namespace KuaFu
 
             ICommand cmd;
             cmd = new KuaFu.Plugin.Standard.AddShapeClass();
-            cmd.OnCreate(_application.Map);
+            cmd.OnCreate(_application);
             cmds.Add(cmd.Name, cmd);
 
             cmd = new KuaFu.Plugin.Standard.AddImageClass();
-            cmd.OnCreate(_application.Map);
+            cmd.OnCreate(_application);
             cmds.Add(cmd.Name, cmd);
 
             cmd = new KuaFu.Plugin.Tools.FullExtent();
-            cmd.OnCreate(_application.Map);
+            cmd.OnCreate(_application);
             cmds.Add(cmd.Name, cmd);
 
             cmd = new KuaFu.Plugin.Tools.FixedZoomInClass();
-            cmd.OnCreate(_application.Map);
+            cmd.OnCreate(_application);
             cmds.Add(cmd.Name, cmd);
 
             cmd = new KuaFu.Plugin.Tools.FixedZoomOutClass();
-            cmd.OnCreate(_application.Map);
+            cmd.OnCreate(_application);
             cmds.Add(cmd.Name, cmd);
 
             ITool tool;
             tool = new KuaFu.Plugin.Tools.ZoomInClass();
-            tool.OnCreate(_application.Map);
+            tool.OnCreate(_application);
             tools.Add(tool.Name, tool);
 
             tool = new KuaFu.Plugin.Tools.ZoomOutClass();
-            tool.OnCreate(_application.Map);
+            tool.OnCreate(_application);
             tools.Add(tool.Name, tool);
 
             tool = new KuaFu.Plugin.Tools.PanClass();
-            tool.OnCreate(_application.Map);
+            tool.OnCreate(_application);
             tools.Add(tool.Name, tool);
 
             tool = new KuaFu.Plugin.Tools.IdentifyClass();
-            tool.OnCreate(_application.Map);
+            tool.OnCreate(_application);
             tools.Add(tool.Name, tool);
 
             //处理ICommand，实例化一个按钮并且绑定事件
@@ -234,7 +234,7 @@ namespace KuaFu
                 UICommand UICmd = new UICommand();
                 UICmd.Text = pair.Value.Caption;
                 UICmd.Key = pair.Value.Name;
-                pair.Value.OnCreate(this._application.Map);
+                pair.Value.OnCreate(this._application);
                 UICmd.Click += new CommandEventHandler(UICommand_Click);
                 this.uiCommandManager.Commands.Add(UICmd);
             }
@@ -243,7 +243,7 @@ namespace KuaFu
                 UICommand UICmd = new UICommand();
                 UICmd.Text = pair.Value.Caption;
                 UICmd.Key = pair.Value.Name;
-                pair.Value.OnCreate(this._application.Map);
+                pair.Value.OnCreate(this._application);
                 UICmd.Click += new CommandEventHandler(UITool_Click);
                 this.uiCommandManager.Commands.Add(UICmd);
             }
@@ -266,6 +266,17 @@ namespace KuaFu
         private void axMap_MouseMoveEvent(object sender, MouseMoveEventArgs e)
         {
             _tool.OnMouseMove(e.button, e.shift, e.x, e.y);
+        }
+
+        private void axMap_AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
+            //MessageBox.Show("Test");
+            _tool.AfterLayerDraw(sender, e);
+        }
+
+        private void axMap_AfterTrackingLayerDraw(object sender, AfterTrackingLayerDrawEventArgs e)
+        {
+            _tool.AfterTrackingLayerDraw(sender, e);
         }
     }
 }

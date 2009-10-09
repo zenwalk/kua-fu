@@ -7,9 +7,13 @@ namespace KuaFu.Plugin.Tools
 {
     public class FixedZoomInClass : ICommand
     {
-        AxMap _map;
+        IApplication _app;
 
         #region ICommand 成员
+
+        public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
+        {
+        }
 
         public string Name
         {
@@ -20,14 +24,14 @@ namespace KuaFu.Plugin.Tools
 
         public void OnClick()
         {
-            Rectangle rect = _map.Extent;
+            Rectangle rect = _app.Map.Extent;
             rect.ScaleRectangle(.75);
-            _map.Extent = rect;
+            _app.Map.Extent = rect;
         }
 
-        public void OnCreate(ESRI.MapObjects2.Core.AxMap map)
+        public void OnCreate(IApplication app)
         {
-            _map = map;
+            _app = app;
         }
 
         #endregion
