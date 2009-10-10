@@ -44,6 +44,107 @@ namespace KuaFu
             }
         }
 
+        /// <summary>
+        /// 这个函数太长了，需要分解
+        /// </summary>
+        /// <param name="cmds"></param>
+        /// <param name="tools"></param>
+        void GetPluginsFromDLL(Dictionary<string, ICommand> cmds, Dictionary<string, ITool> tools)
+        {
+
+            // 以下的代码的灵感来自 Effective C# : 利用特性简化发射
+
+            // Find all the assemblies in the Add-ins directory
+            string AddInsDir = string.Format("{0}/Addins", System.Windows.Forms.Application.StartupPath);
+            try
+            {
+                string[] assemblies = Directory.GetFiles(AddInsDir, "*.dll");
+                foreach (string assemblyFile in assemblies)
+                {
+                    Assembly asm = Assembly.LoadFrom(assemblyFile);
+
+                    // Find and install command handlers from the assembly
+
+                    if (asm != null)
+                    {
+                        Type[] _types = null;
+
+                        try
+                        {
+                            _types = asm.GetTypes();
+                        }
+                        catch (ReflectionTypeLoadException)
+                        {
+                            throw;
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                        finally
+                        {
+                            foreach (Type _t in _types)
+                            {
+                                Type[] _interfaces = _t.GetInterfaces();
+                                foreach (var _interface in _interfaces)
+                                {
+                                    switch (_interface.FullName)
+                                    {
+                                        case "KuaFu.Plugin.ICommand":
+                                            ICommand cmd = null;
+                                            try
+                                            {
+                                                cmd = Activator.CreateInstance(_t) as ICommand;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                throw;
+                                            }
+                                            finally
+                                            {
+                                                if (cmd != null)
+                                                {
+                                                    cmd.OnCreate(_application);
+                                                    cmds.Add(cmd.Name, cmd);
+                                                }
+                                            }
+                                            break;
+                                        case "KuaFu.Plugin.ITool":
+                                            ITool tool = null;
+                                            try
+                                            {
+                                                tool = Activator.CreateInstance(_t) as ITool;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                throw;
+                                            }
+                                            finally
+                                            {
+                                                if (tool != null)
+                                                {
+                                                    tool.OnCreate(_application);
+                                                    tools.Add(tool.Name, tool);
+                                                }
+                                            }
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (System.IO.DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(AddInsDir);
+            }
+
+
+
+}
+
+
         public frmMain()
         {
             //处理欢迎窗体
@@ -56,106 +157,39 @@ namespace KuaFu
             
             //Time consumed here
 
+            // 初始化组件
             InitializeComponent();
 
+            // 支持用鼠标滚轮控制放大缩小
+            MapContainer.MouseWheel += new MouseEventHandler(MapContainer_MouseWheel);
+
+            // 初始化 application 对象
             _application = new KuaFu.Plugin.Application();
             _application.Name = "Kua Fu";
             _application.Map = this.axMap;
             _application.Selection = null;
 
-            // 以下的代码的灵感来自 Effective C# : 利用特性简化发射
-
-            // Find all the assemblies in the Add-ins directory
-            string AddInsDir = string.Format("{0}/Addins", System.Windows.Forms.Application.StartupPath);
-            try
-            {
-                string[] assemblies = Directory.GetFiles(AddInsDir, "*.dll");
-                foreach (string assemblyFile in assemblies)
-                {
-                    Assembly asm = Assembly.LoadFrom(assemblyFile);
-                    // Find and install command handlers from the assembly
-
-                }
-            }
-            catch (System.IO.DirectoryNotFoundException)
-            {
-                MessageBox.Show("不存在 Addins 文件夹！");
-            }
-
+            // 加载所有的 command 和 tool
+            GetPluginsFromDLL(cmds, tools);
 
 
             /// 以下的代码是为了把所有的 command 和 tool 保存到 pool 中
-
-
-            ICommand cmd;
-            cmd = new KuaFu.Plugin.Standard.AddShapeClass();
-            cmd.OnCreate(_application);
-            cmds.Add(cmd.Name, cmd);
-
-
-            cmd.OnClick();
-
-            cmd = new KuaFu.Plugin.Standard.AddImageClass();
-            cmd.OnCreate(_application);
-            cmds.Add(cmd.Name, cmd);
-
-            cmd = new KuaFu.Plugin.Tools.FullExtent();
-            cmd.OnCreate(_application);
-            cmds.Add(cmd.Name, cmd);
-
-            cmd = new KuaFu.Plugin.Tools.FixedZoomInClass();
-            cmd.OnCreate(_application);
-            cmds.Add(cmd.Name, cmd);
-
-            cmd = new KuaFu.Plugin.Tools.FixedZoomOutClass();
-            cmd.OnCreate(_application);
-            cmds.Add(cmd.Name, cmd);
-
-            cmd = new KuaFu.Plugin.Selection.ShowSelectionCountClass();
-            cmd.OnCreate(_application);
-            cmds.Add(cmd.Name, cmd);
-
-            cmd = new KuaFu.Plugin.Selection.ClearSelectionClass();
-            cmd.OnCreate(_application);
-            cmds.Add(cmd.Name, cmd);
-
-
-            ITool tool;
-            tool = new KuaFu.Plugin.Tools.ZoomInClass();
-            tool.OnCreate(_application);
-            tools.Add(tool.Name, tool);
-
-            tool = new KuaFu.Plugin.Tools.ZoomOutClass();
-            tool.OnCreate(_application);
-            tools.Add(tool.Name, tool);
-
-            tool = new KuaFu.Plugin.Tools.PanClass();
-            tool.OnCreate(_application);
-            tools.Add(tool.Name, tool);
-
-            tool = new KuaFu.Plugin.Tools.IdentifyClass();
-            tool.OnCreate(_application);
-            tools.Add(tool.Name, tool);
-
-            tool = new KuaFu.Plugin.Selection.SelectFeatureClass();
-            tool.OnCreate(_application);
-            tools.Add(tool.Name, tool);
+            /// 
 
             //处理ICommand，实例化一个按钮并且绑定事件
-            foreach (var pair in cmds)
-            {
-                //MessageBox.Show(string.Format("{0}, {1}", pair.Key, pair.Value));
-                ToolStripItem button = new ToolStripButton(pair.Value.Caption);
-                button.Name = pair.Value.Name;
-                //button.Click += new EventHandler(Command_Click);
-            }
+            //foreach (var pair in cmds)
+            //{
+            //    //MessageBox.Show(string.Format("{0}, {1}", pair.Key, pair.Value));
+            //    ToolStripItem button = new ToolStripButton(pair.Value.Caption);
+            //    button.Name = pair.Value.Name;
+            //}
 
-            foreach (var pair in tools)
-            {
-                ToolStripItem button = new ToolStripButton(pair.Value.Caption);
-                button.Name = pair.Value.Name;
-                //button.Click += new EventHandler(Tool_Click);
-            }
+            //foreach (var pair in tools)
+            //{
+            //    ToolStripItem button = new ToolStripButton(pair.Value.Caption);
+            //    button.Name = pair.Value.Name;
+            //}
+
 
             {
                 IToolBarDef standard = new KuaFu.Plugin.Standard.StandardToolbar();
@@ -172,10 +206,7 @@ namespace KuaFu
             CreateUICommand(cmds, tools);
             CreateToolbars(toolbars);
 
-
             InitMainMenu(MainMenu);
-
-
 
             InitSymbols();
 
@@ -183,6 +214,22 @@ namespace KuaFu
             //showSplashThread.Join();
             //showSplashThread = null;
 
+            
+
+        }
+
+        void MapContainer_MouseWheel(object sender, MouseEventArgs e)
+        {
+            Rectangle rect = axMap.Extent;
+            if (e.Delta > 0)
+            {
+                rect.ScaleRectangle(1.2);
+            }
+            else
+            {
+                rect.ScaleRectangle(0.8);
+            }
+            axMap.Extent = rect;
         }
 
         void InitMainMenu(UICommandBar MainMenu)
