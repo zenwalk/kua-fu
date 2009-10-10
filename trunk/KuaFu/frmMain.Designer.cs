@@ -49,6 +49,8 @@ namespace KuaFu
             this.MapContainer = new Janus.Windows.UI.Dock.UIPanel();
             this.MapContainerContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
             this.axMap = new ESRI.MapObjects2.Core.AxMap();
+            this.SelectionPanel = new Janus.Windows.UI.Dock.UIPanel();
+            this.SelectionPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
             ((System.ComponentModel.ISupportInitialize)(this.uiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BottomRebar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).BeginInit();
@@ -71,6 +73,8 @@ namespace KuaFu
             this.MapContainer.SuspendLayout();
             this.MapContainerContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axMap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SelectionPanel)).BeginInit();
+            this.SelectionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiCommandManager
@@ -148,6 +152,8 @@ namespace KuaFu
             this.TOCPanel.Panels.Add(this.LayerPanel);
             this.ProperPanel.Id = new System.Guid("d6e840a7-1b13-47e5-a7cb-7c2ce8912614");
             this.TOCPanel.Panels.Add(this.ProperPanel);
+            this.SelectionPanel.Id = new System.Guid("ff4dfa23-4470-4fd7-be17-64b8c2deb52b");
+            this.TOCPanel.Panels.Add(this.SelectionPanel);
             this.uiPanelGroup1.Panels.Add(this.TOCPanel);
             this.DataPanel.Id = new System.Guid("4787b434-5991-47fe-8d72-1dbcbec668fd");
             this.uiPanelGroup1.Panels.Add(this.DataPanel);
@@ -162,6 +168,7 @@ namespace KuaFu
             this.uiPanelManager.AddDockPanelInfo(new System.Guid("346d1611-e846-4b3d-b492-1ac87ad87e8b"), new System.Guid("49db4403-ba40-4f69-ad60-2df5cc58336e"), Janus.Windows.UI.Dock.PanelGroupStyle.Tab, true, 202, true);
             this.uiPanelManager.AddDockPanelInfo(new System.Guid("27461a2b-8224-4215-b30a-520bb553616e"), new System.Guid("346d1611-e846-4b3d-b492-1ac87ad87e8b"), -1, true);
             this.uiPanelManager.AddDockPanelInfo(new System.Guid("d6e840a7-1b13-47e5-a7cb-7c2ce8912614"), new System.Guid("346d1611-e846-4b3d-b492-1ac87ad87e8b"), -1, true);
+            this.uiPanelManager.AddDockPanelInfo(new System.Guid("ff4dfa23-4470-4fd7-be17-64b8c2deb52b"), new System.Guid("346d1611-e846-4b3d-b492-1ac87ad87e8b"), -1, true);
             this.uiPanelManager.AddDockPanelInfo(new System.Guid("4787b434-5991-47fe-8d72-1dbcbec668fd"), new System.Guid("49db4403-ba40-4f69-ad60-2df5cc58336e"), 202, true);
             this.uiPanelManager.AddDockPanelInfo(new System.Guid("c5dc245e-27bb-4661-bac1-f43deda18e30"), Janus.Windows.UI.Dock.PanelDockStyle.Fill, new System.Drawing.Size(690, 405), true);
             this.uiPanelManager.AddFloatingPanelInfo(new System.Guid("4787b434-5991-47fe-8d72-1dbcbec668fd"), new System.Drawing.Point(70, 418), new System.Drawing.Size(200, 200), false);
@@ -183,7 +190,7 @@ namespace KuaFu
             this.TOCPanel.GroupStyle = Janus.Windows.UI.Dock.PanelGroupStyle.Tab;
             this.TOCPanel.Location = new System.Drawing.Point(0, 0);
             this.TOCPanel.Name = "TOCPanel";
-            this.TOCPanel.SelectedPanel = this.LayerPanel;
+            this.TOCPanel.SelectedPanel = this.SelectionPanel;
             this.TOCPanel.Size = new System.Drawing.Size(196, 201);
             this.TOCPanel.TabIndex = 4;
             this.TOCPanel.Text = "地图信息";
@@ -268,6 +275,22 @@ namespace KuaFu
             this.axMap.AfterLayerDraw += new ESRI.MapObjects2.Core.AfterLayerDrawEventHandler(this.axMap_AfterLayerDraw);
             this.axMap.AfterTrackingLayerDraw += new ESRI.MapObjects2.Core.AfterTrackingLayerDrawEventHandler(this.axMap_AfterTrackingLayerDraw);
             // 
+            // SelectionPanel
+            // 
+            this.SelectionPanel.InnerContainer = this.SelectionPanelContainer;
+            this.SelectionPanel.Location = new System.Drawing.Point(0, 0);
+            this.SelectionPanel.Name = "SelectionPanel";
+            this.SelectionPanel.Size = new System.Drawing.Size(196, 183);
+            this.SelectionPanel.TabIndex = 4;
+            this.SelectionPanel.Text = "选择";
+            // 
+            // SelectionPanelContainer
+            // 
+            this.SelectionPanelContainer.Location = new System.Drawing.Point(1, 24);
+            this.SelectionPanelContainer.Name = "SelectionPanelContainer";
+            this.SelectionPanelContainer.Size = new System.Drawing.Size(194, 159);
+            this.SelectionPanelContainer.TabIndex = 0;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -303,6 +326,8 @@ namespace KuaFu
             this.MapContainer.ResumeLayout(false);
             this.MapContainerContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axMap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SelectionPanel)).EndInit();
+            this.SelectionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -328,6 +353,8 @@ namespace KuaFu
         private Janus.Windows.UI.Dock.UIPanel DataPanel;
         private Janus.Windows.UI.Dock.UIPanelInnerContainer DataPanelContainer;
         private ESRI.MapObjects2.Core.AxMap axMap;
+        private Janus.Windows.UI.Dock.UIPanel SelectionPanel;
+        private Janus.Windows.UI.Dock.UIPanelInnerContainer SelectionPanelContainer;
 
     }
 }

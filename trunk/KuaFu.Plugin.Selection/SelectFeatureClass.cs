@@ -1,35 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-
 using ESRI.MapObjects2.Core;
 
-namespace KuaFu.Plugin.Tools
+namespace KuaFu.Plugin.Selection
 {
-    public class IdentifyClass : KuaFu.Plugin.ITool
+    public class SelectFeatureClass : KuaFu.Plugin.ITool
     {
         IApplication _app;
-        private MapLayer lyr;
 
-
-        public IdentifyClass()
+        public SelectFeatureClass()
         {
         }
-
-        #region ITool 成员
 
         public System.Drawing.Bitmap Bitmap
         {
             get { return null; }
-            /*get { return new System.Drawing.Bitmap(""); }*/
         }
 
-        public string Caption { get { return "识别"; } }
+        public string Caption { get { return "选择"; } }
 
         public string Category
         {
-            get { return "工具"; }
+            get { return "选择"; }
         }
 
         public bool Checked
@@ -59,7 +50,7 @@ namespace KuaFu.Plugin.Tools
 
         public string Name
         {
-            get { return "Identify"; }
+            get { return "SelectFeature"; }
         }
 
         public void OnClick()
@@ -69,7 +60,6 @@ namespace KuaFu.Plugin.Tools
 
         public void OnCreate(IApplication app)
         {
-            //_map = map;
             _app = app;
         }
 
@@ -103,70 +93,34 @@ namespace KuaFu.Plugin.Tools
             
         }
 
-        private Recordset selection;
-
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            Point pt = _app.Map.ToMapPoint(x, y);
-            _app.Selection = (_app.Map.Layers.Item(0) as MapLayer).SearchShape(pt, SearchMethodConstants.moPointInPolygon, "");
+            Rectangle rect = _app.Map.TrackRectangle();
+            _app.Selection = (_app.Map.Layers.Item(0) as MapLayer).SearchShape(rect, SearchMethodConstants.moAreaIntersect, "");
             //_app.Map.AfterTrackingLayerDraw += new AfterTrackingLayerDrawEventHandler(AfterTrackingLayerDraw);
             _app.Map.TrackingLayer.Refresh(true, null);
-            //_app.Map.CtlRefresh();
         }
 
         public void AfterTrackingLayerDraw(object sender, AfterTrackingLayerDrawEventArgs e)
-        {
-            Symbol sym = new SymbolClass();
-            sym.SymbolType = SymbolTypeConstants.moFillSymbol;
-            sym.Style = 0;
-            sym.Color = 0;
-
+        {   
             //selection.MoveFirst();
 
             //Field f = selection.Fields.Item("shape");
             //object o = f.Value;
 
-            _app.Map.DrawShape(selection, sym);
+            //Symbol sym = new SymbolClass();
+            //sym.SymbolType = SymbolTypeConstants.moFillSymbol;
+            //sym.Style = 0;
+            //sym.Color = 0;
+
+            //_app.Map.DrawShape(_app.Selection, sym);
 
         }
-
 
         public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
         {
-            Symbol sym = new SymbolClass();
-            sym.SymbolType = SymbolTypeConstants.moFillSymbol;
-            sym.Style = 0;
-            sym.Color = 2;
-
-            selection.MoveFirst();
-
-            Field f = selection.Fields.Item("shape");
-            object o = f.Value;
-
-            _app.Map.DrawShape(o, sym);
-
-            //Polygon poly = fs.Item("shape").Value as Polygon;
-            
-
-            //if (selection != null)
-            //{
-            //    Point pt = new PointClass();
-            //    pt.X = 0;
-            //    pt.Y = 0;
-
-            //    stdole.StdFont font = new stdole.StdFontClass();
-            //    font.Name = "黑体";
-            //    font.Size = 50;
-
-            //    TextSymbol sym = new TextSymbolClass();
-            //    sym.Font = font;
-
-            //    _app.Map.DrawText("一剑霜寒十四州", pt, sym);
-
-            //    //_app.Map.DrawShape(poly, sym);
-            //}
-
         }
+
 
         public void OnMouseUp(int button, int shift, int x, int y)
         {
@@ -188,9 +142,6 @@ namespace KuaFu.Plugin.Tools
             throw new NotImplementedException();
         }
 
-        
-
-        #endregion
     }
 }
 
