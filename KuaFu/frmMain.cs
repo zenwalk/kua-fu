@@ -92,6 +92,9 @@ namespace KuaFu
             cmd.OnCreate(_application);
             cmds.Add(cmd.Name, cmd);
 
+
+            cmd.OnClick();
+
             cmd = new KuaFu.Plugin.Standard.AddImageClass();
             cmd.OnCreate(_application);
             cmds.Add(cmd.Name, cmd);
@@ -169,15 +172,8 @@ namespace KuaFu
             CreateUICommand(cmds, tools);
             CreateToolbars(toolbars);
 
-            UICommand menu_selection = new UICommand("selection", "选择");
 
-            UICommand uicmd = new UICommand("exit", "退出", CommandType.Command);
-            uicmd.Click += new CommandEventHandler(test);
-
-            menu_selection.Commands.Add(uicmd);
-
-            MainMenu.Commands.Add(menu_selection);
-
+            InitMainMenu(MainMenu);
 
 
 
@@ -187,6 +183,18 @@ namespace KuaFu
             //showSplashThread.Join();
             //showSplashThread = null;
 
+        }
+
+        void InitMainMenu(UICommandBar MainMenu)
+        {
+            UICommand menu_selection = new UICommand("selection", "选择");
+
+            UICommand uicmd = new UICommand("exit", "退出", CommandType.Command);
+            uicmd.Click += new CommandEventHandler(test);
+
+            menu_selection.Commands.Add(uicmd);
+
+            MainMenu.Commands.Add(menu_selection);
         }
 
         void InitSymbols()

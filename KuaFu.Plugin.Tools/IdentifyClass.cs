@@ -103,47 +103,55 @@ namespace KuaFu.Plugin.Tools
             
         }
 
-        private Recordset selection;
+        private Recordset recs;
+
+        frmIdentify _frmIdentify;
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
             Point pt = _app.Map.ToMapPoint(x, y);
-            _app.Selection = (_app.Map.Layers.Item(0) as MapLayer).SearchShape(pt, SearchMethodConstants.moPointInPolygon, "");
+            recs = (_app.Map.Layers.Item(0) as MapLayer).SearchShape(pt, SearchMethodConstants.moPointInPolygon, "");
+
+            _app.Map.FlashShape(recs.Fields.Item("shape").Value, 1);
+
+            _frmIdentify = frmIdentify.GetInstance(_app);
+            _frmIdentify.Update(recs);
+            _frmIdentify.Show();
             //_app.Map.AfterTrackingLayerDraw += new AfterTrackingLayerDrawEventHandler(AfterTrackingLayerDraw);
-            _app.Map.TrackingLayer.Refresh(true, null);
+            
             //_app.Map.CtlRefresh();
         }
 
         public void AfterTrackingLayerDraw(object sender, AfterTrackingLayerDrawEventArgs e)
         {
-            Symbol sym = new SymbolClass();
-            sym.SymbolType = SymbolTypeConstants.moFillSymbol;
-            sym.Style = 0;
-            sym.Color = 0;
+            //Symbol sym = new SymbolClass();
+            //sym.SymbolType = SymbolTypeConstants.moFillSymbol;
+            //sym.Style = 0;
+            //sym.Color = 0;
 
             //selection.MoveFirst();
 
             //Field f = selection.Fields.Item("shape");
             //object o = f.Value;
 
-            _app.Map.DrawShape(selection, sym);
+            //_app.Map.DrawShape(selection, sym);
 
         }
 
 
         public void AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
         {
-            Symbol sym = new SymbolClass();
-            sym.SymbolType = SymbolTypeConstants.moFillSymbol;
-            sym.Style = 0;
-            sym.Color = 2;
+            //Symbol sym = new SymbolClass();
+            //sym.SymbolType = SymbolTypeConstants.moFillSymbol;
+            //sym.Style = 0;
+            //sym.Color = 2;
 
-            selection.MoveFirst();
+            //selection.MoveFirst();
 
-            Field f = selection.Fields.Item("shape");
-            object o = f.Value;
+            //Field f = selection.Fields.Item("shape");
+            //object o = f.Value;
 
-            _app.Map.DrawShape(o, sym);
+            //_app.Map.DrawShape(o, sym);
 
             //Polygon poly = fs.Item("shape").Value as Polygon;
             
