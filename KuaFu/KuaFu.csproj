@@ -97,6 +97,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KuaFu.Plugin.Selection\KuaFu.Plugin.Selection.csproj">
+      <Project>{7806D220-F64B-47CA-B38A-7685ABD5F4F1}</Project>
+      <Name>KuaFu.Plugin.Selection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KuaFu.Plugin.Standard\KuaFu.Plugin.Standard.csproj">
       <Project>{A089557C-3142-4B11-8BA8-5B94F4BBA72C}</Project>
       <Name>KuaFu.Plugin.Standard</Name>

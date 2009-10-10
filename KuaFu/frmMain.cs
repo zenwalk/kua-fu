@@ -13,13 +13,15 @@ namespace KuaFu
 {
     public partial class frmMain : Form
     {
-        IApplication _application = null;
+        IApplication _application;
 
         Dictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
         Dictionary<string, ITool> tools = new Dictionary<string, ITool>();
         Dictionary<string, IToolBarDef> toolbars = new Dictionary<string, IToolBarDef>();
 
         ITool _tool; //当前使用的ITool
+
+        Symbol sym_selected = new SymbolClass();
 
         /// <summary>
         /// Thread to show the splash
@@ -59,6 +61,7 @@ namespace KuaFu
             _application = new KuaFu.Plugin.Application();
             _application.Name = "Kua Fu";
             _application.Map = this.axMap;
+            _application.Selection = null;
 
             // 以下的代码的灵感来自 Effective C# : 利用特性简化发射
 
@@ -78,6 +81,11 @@ namespace KuaFu
             {
                 MessageBox.Show("不存在 Addins 文件夹！");
             }
+
+
+
+            /// 以下的代码是为了把所有的 command 和 tool 保存到 pool 中
+
 
             ICommand cmd;
             cmd = new KuaFu.Plugin.Standard.AddShapeClass();
@@ -100,6 +108,15 @@ namespace KuaFu
             cmd.OnCreate(_application);
             cmds.Add(cmd.Name, cmd);
 
+            cmd = new KuaFu.Plugin.Selection.ShowSelectionCountClass();
+            cmd.OnCreate(_application);
+            cmds.Add(cmd.Name, cmd);
+
+            cmd = new KuaFu.Plugin.Selection.ClearSelectionClass();
+            cmd.OnCreate(_application);
+            cmds.Add(cmd.Name, cmd);
+
+
             ITool tool;
             tool = new KuaFu.Plugin.Tools.ZoomInClass();
             tool.OnCreate(_application);
@@ -114,6 +131,10 @@ namespace KuaFu
             tools.Add(tool.Name, tool);
 
             tool = new KuaFu.Plugin.Tools.IdentifyClass();
+            tool.OnCreate(_application);
+            tools.Add(tool.Name, tool);
+
+            tool = new KuaFu.Plugin.Selection.SelectFeatureClass();
             tool.OnCreate(_application);
             tools.Add(tool.Name, tool);
 
@@ -140,23 +161,40 @@ namespace KuaFu
 
                 IToolBarDef _tool = new KuaFu.Plugin.Tools.ToolToolbar();
                 toolbars.Add(_tool.Name, _tool);
+
+                IToolBarDef selection = new KuaFu.Plugin.Selection.SelectionToolbar();
+                toolbars.Add(selection.Name, selection);
             }
 
             CreateUICommand(cmds, tools);
             CreateToolbars(toolbars);
 
+            UICommand menu_selection = new UICommand("selection", "选择");
 
-            UICommand uicmd = new UICommand("exit","退出");
+            UICommand uicmd = new UICommand("exit", "退出", CommandType.Command);
             uicmd.Click += new CommandEventHandler(test);
 
-            MainMenu.Commands.Add(uicmd);
+            menu_selection.Commands.Add(uicmd);
+
+            MainMenu.Commands.Add(menu_selection);
 
 
+
+
+            InitSymbols();
 
             //showSplashThread.Abort();
             //showSplashThread.Join();
             //showSplashThread = null;
 
+        }
+
+        void InitSymbols()
+        {
+            // 设置表征选择的符号
+            sym_selected.SymbolType = SymbolTypeConstants.moFillSymbol;
+            sym_selected.Style = 0;
+            sym_selected.Color = 0xffff;
         }
 
         void test(object sender, CommandEventArgs e)
@@ -188,8 +226,10 @@ namespace KuaFu
 
         private void axMap_MouseDownEvent(object sender, MouseDownEventArgs e)
         {
-            //tool.OnMouseDown(e.button, e.shift, e.x, e.y);
-            _tool.OnMouseDown(e.button, e.shift, e.x, e.y);
+            if (_tool != null)
+            {
+                _tool.OnMouseDown(e.button, e.shift, e.x, e.y);
+            }
         }
 
         private void CreateToolbars(Dictionary<string, IToolBarDef> toolbars)
@@ -200,6 +240,8 @@ namespace KuaFu
                 UICommandBar UIToolbar = new UICommandBar();
                 UIToolbar.CommandManager = this.uiCommandManager;
                 UIToolbar.CommandsStyle = CommandStyle.TextImage;
+                UIToolbar.CommandBarType = CommandBarType.ToolBar;
+                UIToolbar.DockStyle = BarsDockStyle.Top;
                 UIToolbar.Name = t.Name;
                 UIToolbar.Text = t.Caption;
 
@@ -265,18 +307,36 @@ namespace KuaFu
 
         private void axMap_MouseMoveEvent(object sender, MouseMoveEventArgs e)
         {
-            _tool.OnMouseMove(e.button, e.shift, e.x, e.y);
+            if (_tool != null)
+            {
+                _tool.OnMouseMove(e.button, e.shift, e.x, e.y);
+            }
         }
 
         private void axMap_AfterLayerDraw(object sender, AfterLayerDrawEventArgs e)
         {
-            //MessageBox.Show("Test");
-            _tool.AfterLayerDraw(sender, e);
+            if (_tool != null)
+            {
+                _tool.AfterLayerDraw(sender, e);
+            }
         }
 
         private void axMap_AfterTrackingLayerDraw(object sender, AfterTrackingLayerDrawEventArgs e)
         {
-            _tool.AfterTrackingLayerDraw(sender, e);
+            if (_tool != null)
+            {
+                _tool.AfterTrackingLayerDraw(sender, e);
+            }
+            if (_application.Selection != null)
+            {
+                DrawSelection();
+            }
+        }
+
+        private void DrawSelection()
+        {
+            //MessageBox.Show("Test");
+            this.axMap.DrawShape(_application.Selection, sym_selected);
         }
     }
 }
