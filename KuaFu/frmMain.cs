@@ -139,11 +139,7 @@ namespace KuaFu
             {
                 Directory.CreateDirectory(AddInsDir);
             }
-
-
-
-}
-
+        }
 
         public frmMain()
         {

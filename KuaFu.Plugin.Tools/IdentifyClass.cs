@@ -10,7 +10,7 @@ namespace KuaFu.Plugin.Tools
     public class IdentifyClass : KuaFu.Plugin.ITool
     {
         IApplication _app;
-        private MapLayer lyr;
+        //private MapLayer lyr;
 
 
         public IdentifyClass()

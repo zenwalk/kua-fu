@@ -12,6 +12,7 @@
     <AssemblyName>KuaFu.Plugin.Tools</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -91,4 +92,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>COPY /y "$(TargetPath)" "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\Addins"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
