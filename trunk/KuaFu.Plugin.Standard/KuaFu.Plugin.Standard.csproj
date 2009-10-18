@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AddImageClass.cs" />
     <Compile Include="AddShapeClass.cs" />
+    <Compile Include="InvokeDialog.cs" />
     <Compile Include="StandardTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,4 +71,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>COPY /y "$(TargetPath)" "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\Addins"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

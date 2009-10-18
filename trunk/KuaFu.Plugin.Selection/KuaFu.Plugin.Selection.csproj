@@ -70,7 +70,6 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>COPY /y "$(TargetPath)" "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\Addins"</PostBuildEvent>
   </PropertyGroup>
 </Project>

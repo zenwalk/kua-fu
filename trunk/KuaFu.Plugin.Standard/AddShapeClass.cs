@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using ESRI.MapObjects2.Core;
+using System.Threading;
 
 namespace KuaFu.Plugin.Standard
 {
@@ -17,7 +18,7 @@ namespace KuaFu.Plugin.Standard
         public AddShapeClass()
         {
             dc = new ESRI.MapObjects2.Core.DataConnectionClass();
-            lyr = new ESRI.MapObjects2.Core.MapLayerClass();
+            //lyr = new ESRI.MapObjects2.Core.MapLayerClass();
         }
 
         #region ICommand Members
@@ -30,13 +31,46 @@ namespace KuaFu.Plugin.Standard
         {
             try
             {
-                dc.Database = @"D:\ESRI\ESRIDATA\WORLD";
-                dc.Connect();
+                string fname, fdir;
+
+                //OpenFileDialog ofd = new OpenFileDialog();
+                //ofd.InitialDirectory = "c:";
+                //ofd.Filter = "Shapefile|*.shp";
+                //ofd.RestoreDirectory = true;
+                //ofd.FilterIndex = 1;
+
+                //if (ofd.ShowDialog() == DialogResult.Cancel)
+                //{
+                //    return;
+                //}
+
+                //fname = ofd.FileName;
+
+                Invoker invoker = new Invoker();
+                if (invoker.Invoke() == DialogResult.Cancel)
+                {
+                    return;
+                }
+                fname = invoker.InvokeDialog.FileName;
+
+                fdir = fname.Substring(0, fname.LastIndexOf('\\') + 1);
+                fname = fname.Substring(fname.LastIndexOf('\\') + 1);
                 
-                gds = dc.FindGeoDataset("CNTRY92.SHP");
+                dc.Database = fdir.Replace(@"\", @"\\");
+                dc.Connect();
+
+                gds = dc.FindGeoDataset(fname);
+
+                if (gds == null)
+                {
+                    MessageBox.Show("ERR: Á¬½Ó´íÎó");
+                    return;
+                }
+                
                 gds.AllowSharing = true;
                 if (gds != null)
                 {
+                    lyr = new ESRI.MapObjects2.Core.MapLayerClass();
                     lyr.GeoDataset = gds;
                     _app.Map.Layers.Add((object)lyr);
                     _app.Map.CtlRefresh();
