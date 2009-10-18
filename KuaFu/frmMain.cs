@@ -237,7 +237,23 @@ namespace KuaFu
 
             menu_selection.Commands.Add(uicmd);
 
+            UICommand menu_file = new UICommand("file", "文件");
+            UICommand menu_edit = new UICommand("edit", "编辑");
+            UICommand menu_view = new UICommand("view", "view");
+            UICommand menu_theme = new UICommand("theme", "主题");
+            UICommand menu_graphics = new UICommand("graphics", "绘图");
+            UICommand menu_window = new UICommand("window", "窗体");
+            UICommand menu_help = new UICommand("help", "帮助");
+
             MainMenu.Commands.Add(menu_selection);
+            
+            MainMenu.Commands.Add(menu_file);
+            MainMenu.Commands.Add(menu_edit);
+            MainMenu.Commands.Add(menu_view);
+            MainMenu.Commands.Add(menu_theme);
+            MainMenu.Commands.Add(menu_graphics);
+            MainMenu.Commands.Add(menu_window);
+            MainMenu.Commands.Add(menu_help);
         }
 
         void InitSymbols()

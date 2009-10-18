@@ -20,7 +20,7 @@ namespace KuaFu.Plugin.Selection
 
         public long ItemCount
         {
-            get { return 3; }
+            get { return 4; }
         }
 
         public void GetItemInfo(int pos, IItemDef itemDef)
@@ -39,7 +39,10 @@ namespace KuaFu.Plugin.Selection
                     itemDef.ID = "SelectFeature";
                     itemDef.Group = false;
                     break;
-
+                case 3:
+                    itemDef.ID = "ReverseSelection";
+                    itemDef.Group = false;
+                    break;
                 default:
                     break;
             }
