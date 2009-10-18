@@ -69,7 +69,6 @@ namespace KuaFu.Plugin.Tools
 
         public void OnCreate(IApplication app)
         {
-            //_map = map;
             _app = app;
         }
 

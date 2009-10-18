@@ -42,6 +42,7 @@
   -->
   <ItemGroup>
     <Compile Include="ClearSelectionClass.cs" />
+    <Compile Include="ReverseSelectionClass.cs" />
     <Compile Include="SelectFeatureClass.cs" />
     <Compile Include="ShowSelectionCountClass.cs" />
     <Compile Include="SelectionTools.cs" />
