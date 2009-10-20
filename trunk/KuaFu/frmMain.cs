@@ -230,13 +230,6 @@ namespace KuaFu
 
         void InitMainMenu(UICommandBar MainMenu)
         {
-            UICommand menu_selection = new UICommand("selection", "选择");
-
-            UICommand uicmd = new UICommand("exit", "退出", CommandType.Command);
-            uicmd.Click += new CommandEventHandler(test);
-
-            menu_selection.Commands.Add(uicmd);
-
             UICommand menu_file = new UICommand("file", "文件");
             UICommand menu_edit = new UICommand("edit", "编辑");
             UICommand menu_view = new UICommand("view", "view");
@@ -245,7 +238,11 @@ namespace KuaFu
             UICommand menu_window = new UICommand("window", "窗体");
             UICommand menu_help = new UICommand("help", "帮助");
 
-            MainMenu.Commands.Add(menu_selection);
+            UICommand uicmd2 = new UICommand("sep", "sep", CommandType.Separator);
+
+            UICommand uicmd = new UICommand("exit", "退出", CommandType.Command);
+            uicmd.Click += new CommandEventHandler(Exit);
+            menu_file.Commands.Add(uicmd);
             
             MainMenu.Commands.Add(menu_file);
             MainMenu.Commands.Add(menu_edit);
@@ -264,7 +261,7 @@ namespace KuaFu
             sym_selected.Color = 0xffff;
         }
 
-        void test(object sender, CommandEventArgs e)
+        void Exit(object sender, CommandEventArgs e)
         {
             System.Windows.Forms.Application.Exit();
         }
