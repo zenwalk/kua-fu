@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AddImageClass.cs" />
     <Compile Include="AddShapeClass.cs" />
+    <Compile Include="SymbolizationClass.cs" />
     <Compile Include="InvokeDialog.cs" />
     <Compile Include="StandardTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
