@@ -53,6 +53,12 @@
   <ItemGroup>
     <Compile Include="AddImageClass.cs" />
     <Compile Include="AddShapeClass.cs" />
+    <Compile Include="frmSymbolization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSymbolization.Designer.cs">
+      <DependentUpon>frmSymbolization.cs</DependentUpon>
+    </Compile>
     <Compile Include="SymbolizationClass.cs" />
     <Compile Include="InvokeDialog.cs" />
     <Compile Include="StandardTools.cs" />

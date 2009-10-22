@@ -20,7 +20,8 @@ namespace KuaFu.Plugin.Standard
 
         public void OnClick()
         {
-            
+            frmSymbolization _frmSymbolization = new frmSymbolization();
+            _frmSymbolization.ShowDialog(_app.MainForm);
         }
 
         public void OnCreate(IApplication app)
