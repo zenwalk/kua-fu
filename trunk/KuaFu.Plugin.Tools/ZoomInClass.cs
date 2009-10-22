@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ESRI.MapObjects2.Core;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Tools
 {
@@ -17,7 +18,7 @@ namespace KuaFu.Plugin.Tools
 
         public System.Drawing.Bitmap Bitmap
         {
-            get { throw new NotImplementedException(); }
+            get { return new Bitmap("放大.ico"); }
         }
 
         public string Caption
@@ -97,7 +98,7 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            Rectangle rect = _app.Map.TrackRectangle();
+            ESRI.MapObjects2.Core.Rectangle rect = _app.Map.TrackRectangle();
             _app.Map.Extent = rect;
 
         }

@@ -349,6 +349,7 @@ namespace KuaFu
                 UICommand UICmd = new UICommand();
                 UICmd.Text = pair.Value.Caption;
                 UICmd.Key = pair.Value.Name;
+                UICmd.Image = pair.Value.Bitmap;
                 pair.Value.OnCreate(this._application);
                 UICmd.Click += new CommandEventHandler(UITool_Click);
                 this.uiCommandManager.Commands.Add(UICmd);
