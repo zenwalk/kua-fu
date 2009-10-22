@@ -19,8 +19,7 @@ namespace KuaFu.Plugin.Tools
 
         public System.Drawing.Bitmap Bitmap
         {
-            get { return null; }
-            /*get { return new System.Drawing.Bitmap(""); }*/
+            get { return new System.Drawing.Bitmap("ÂþÓÎ.ico"); }
         }
 
         public string Caption { get { return "ÒÆ¶¯"; } }
