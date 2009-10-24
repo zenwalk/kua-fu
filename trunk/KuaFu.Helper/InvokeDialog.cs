@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace KuaFu.Plugin.Standard
+namespace KuaFu.Helper
 {
     public class Invoker
     {
@@ -16,7 +16,7 @@ namespace KuaFu.Plugin.Standard
         public Invoker()
         {
             InvokeDialog = new OpenFileDialog();
-            InvokeDialog.Filter = "Shapefile|*.shp";
+            InvokeDialog.Filter = "ESRI Shapefile|*.shp";
             InvokeThread = new Thread(new ThreadStart(InvokeMethod));
             InvokeThread.SetApartmentState(ApartmentState.STA);
             InvokeResult = DialogResult.None;
