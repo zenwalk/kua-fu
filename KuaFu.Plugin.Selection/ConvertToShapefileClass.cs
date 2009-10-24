@@ -33,7 +33,8 @@ namespace KuaFu.Plugin.Selection
             //object o = selected.Fields.Item("shape").Value;
             //MessageBox.Show(o.GetHashCode().ToString());
 
-            MessageBox.Show("SID");
+            MapLayer lyr = new MapLayerClass();
+            _app.Selection.Export("c:\\test.shp", null);
             
         }
 
