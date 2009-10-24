@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using ESRI.MapObjects2.Core;
 using System.Threading;
 
+using KuaFu.Helper;
+
 namespace KuaFu.Plugin.Standard
 {
     public class AddShapeClass : KuaFu.Plugin.ICommand

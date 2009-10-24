@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KuaFu.Plugin.Tools", "KuaFu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KuaFu.Plugin.Selection", "KuaFu.Plugin.Selection\KuaFu.Plugin.Selection.csproj", "{7806D220-F64B-47CA-B38A-7685ABD5F4F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KuaFu.Helper", "KuaFu.Helper\KuaFu.Helper.csproj", "{CE7A5DFC-9B35-4997-B81F-323E1EFAE09C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{7806D220-F64B-47CA-B38A-7685ABD5F4F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7806D220-F64B-47CA-B38A-7685ABD5F4F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7806D220-F64B-47CA-B38A-7685ABD5F4F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE7A5DFC-9B35-4997-B81F-323E1EFAE09C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7A5DFC-9B35-4997-B81F-323E1EFAE09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7A5DFC-9B35-4997-B81F-323E1EFAE09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7A5DFC-9B35-4997-B81F-323E1EFAE09C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
