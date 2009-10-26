@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ESRI.MapObjects2.Core;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Tools
 {
@@ -22,9 +23,11 @@ namespace KuaFu.Plugin.Tools
 
         public string Caption { get { return "放大"; } }
 
+        public Bitmap Bitmap { get { return new Bitmap("sid.ico"); } }
+
         public void OnClick()
         {
-            Rectangle rect = _app.Map.Extent;
+            ESRI.MapObjects2.Core.Rectangle rect = _app.Map.Extent;
             rect.ScaleRectangle(.75);
             _app.Map.Extent = rect;
         }

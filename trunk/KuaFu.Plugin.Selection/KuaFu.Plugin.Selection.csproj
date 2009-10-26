@@ -78,4 +78,9 @@
   <PropertyGroup>
     <PostBuildEvent>COPY /y "$(TargetPath)" "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\Addins"</PostBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="选择.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

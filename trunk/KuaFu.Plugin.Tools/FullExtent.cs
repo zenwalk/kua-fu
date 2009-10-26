@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ESRI.MapObjects2.Core;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Tools
 {
@@ -24,6 +25,8 @@ namespace KuaFu.Plugin.Tools
         {
             get { return "全屏"; }
         }
+
+        public Bitmap Bitmap { get { return new Bitmap("sid.ico"); } }
 
         public void OnClick()
         {
