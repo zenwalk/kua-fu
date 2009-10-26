@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using ESRI.MapObjects2.Core;
+using KuaFu.Helper;
 
 namespace KuaFu.Plugin.Selection
 {
@@ -32,9 +33,20 @@ namespace KuaFu.Plugin.Selection
 
             //object o = selected.Fields.Item("shape").Value;
             //MessageBox.Show(o.GetHashCode().ToString());
+            string fname;
+            InvokerSaveFileDialog invoker = new InvokerSaveFileDialog();
+            if (invoker.Invoke() == DialogResult.Cancel)
+            {
+                return;
+            }
+            fname = invoker.InvokeDialog.FileName;
 
+            GeoDataset gds = _app.Selection.Export(fname, null);
+            
             MapLayer lyr = new MapLayerClass();
-            _app.Selection.Export("c:\\test.shp", null);
+            lyr.GeoDataset = gds;
+
+            _app.Map.Layers.Add(lyr);
             
         }
 
