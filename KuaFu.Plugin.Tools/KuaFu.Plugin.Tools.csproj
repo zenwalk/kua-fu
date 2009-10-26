@@ -91,6 +91,9 @@
     <Content Include="放大.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="识别.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="漫游.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

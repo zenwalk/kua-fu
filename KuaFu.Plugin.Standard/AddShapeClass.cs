@@ -7,6 +7,7 @@ using ESRI.MapObjects2.Core;
 using System.Threading;
 
 using KuaFu.Helper;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Standard
 {
@@ -28,6 +29,8 @@ namespace KuaFu.Plugin.Standard
         public string Name { get { return "AddShape"; } }
 
         public string Caption { get { return "Ìí¼ÓShapefile"; } }
+
+        public Bitmap Bitmap { get { return new Bitmap("Ìí¼Ó.ico"); } }
 
         public void OnClick()
         {

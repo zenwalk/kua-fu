@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 using ESRI.MapObjects2.Core;
 using System.Threading;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Standard
 {
@@ -17,6 +18,8 @@ namespace KuaFu.Plugin.Standard
         public string Name { get { return "Symbolization"; } }
 
         public string Caption { get { return "·ûºÅ»¯"; } }
+
+        public Bitmap Bitmap { get { return new Bitmap("·ûºÅ»¯.ico"); } }
 
         public void OnClick()
         {

@@ -305,6 +305,7 @@ namespace KuaFu
                 UIToolbar.CommandManager = this.uiCommandManager;
                 UIToolbar.CommandsStyle = CommandStyle.TextImage;
                 UIToolbar.CommandBarType = CommandBarType.ToolBar;
+                UIToolbar.ShowToolTips = Janus.Windows.UI.InheritableBoolean.True;
                 UIToolbar.DockStyle = BarsDockStyle.Top;
                 UIToolbar.Name = t.Name;
                 UIToolbar.Text = t.Caption;
@@ -340,6 +341,7 @@ namespace KuaFu
                 UICommand UICmd = new UICommand();
                 UICmd.Text = pair.Value.Caption;
                 UICmd.Key = pair.Value.Name;
+                UICmd.Image = pair.Value.Bitmap;
                 pair.Value.OnCreate(this._application);
                 UICmd.Click += new CommandEventHandler(UICommand_Click);
                 this.uiCommandManager.Commands.Add(UICmd);

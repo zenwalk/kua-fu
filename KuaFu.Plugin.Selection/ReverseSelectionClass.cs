@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using ESRI.MapObjects2.Core;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Selection
 {
@@ -20,6 +21,8 @@ namespace KuaFu.Plugin.Selection
         }
 
         public string Caption { get { return "反选"; } }
+
+        public Bitmap Bitmap { get { return new Bitmap("sid.ico"); } }
 
         public void OnClick()
         {

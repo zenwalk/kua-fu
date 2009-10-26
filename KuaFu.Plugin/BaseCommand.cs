@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ESRI.MapObjects2.Core;
+using System.Drawing;
 
 namespace KuaFu.Plugin
 {
@@ -16,12 +17,12 @@ namespace KuaFu.Plugin
         string _name = "name";
         string _caption = "caption";
 
+        public Bitmap Bitmap { get { return new Bitmap("sid.ico"); } }
+
         public void OnClick()
         {
             throw new NotImplementedException();
         }
-
-        #region
 
         public string Name
         {
@@ -42,6 +43,5 @@ namespace KuaFu.Plugin
         {
         }
 
-        #endregion
     }
 }

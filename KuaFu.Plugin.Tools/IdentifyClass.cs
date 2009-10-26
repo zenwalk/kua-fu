@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using ESRI.MapObjects2.Core;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Tools
 {
@@ -21,7 +22,7 @@ namespace KuaFu.Plugin.Tools
 
         public System.Drawing.Bitmap Bitmap
         {
-            get { return null; }
+            get { return new Bitmap("识别.ico"); }
             /*get { return new System.Drawing.Bitmap(""); }*/
         }
 
@@ -108,7 +109,7 @@ namespace KuaFu.Plugin.Tools
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            Point pt = _app.Map.ToMapPoint(x, y);
+            ESRI.MapObjects2.Core.Point pt = _app.Map.ToMapPoint(x, y);
             recs = (_app.Map.Layers.Item(0) as MapLayer).SearchShape(pt, SearchMethodConstants.moPointInPolygon, "");
 
             _app.Map.FlashShape(recs.Fields.Item("shape").Value, 1);

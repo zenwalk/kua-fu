@@ -1,5 +1,6 @@
 ﻿using System;
 using ESRI.MapObjects2.Core;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Selection
 {
@@ -13,7 +14,7 @@ namespace KuaFu.Plugin.Selection
 
         public System.Drawing.Bitmap Bitmap
         {
-            get { return null; }
+            get { return new Bitmap("选择.ico"); }
         }
 
         public string Caption { get { return "选择"; } }
@@ -95,7 +96,7 @@ namespace KuaFu.Plugin.Selection
 
         public void OnMouseDown(int button, int shift, int x, int y)
         {
-            Rectangle rect = _app.Map.TrackRectangle();
+            ESRI.MapObjects2.Core.Rectangle rect = _app.Map.TrackRectangle();
             _app.Selection = (_app.Map.Layers.Item(0) as MapLayer).SearchShape(rect, SearchMethodConstants.moAreaIntersect, "");
             //_app.Map.AfterTrackingLayerDraw += new AfterTrackingLayerDrawEventHandler(AfterTrackingLayerDraw);
             _app.Map.TrackingLayer.Refresh(true, null);

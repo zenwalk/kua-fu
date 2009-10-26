@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ESRI.MapObjects2.Core;
+using System.Drawing;
 
 namespace KuaFu.Plugin.Standard
 {
@@ -20,6 +21,8 @@ namespace KuaFu.Plugin.Standard
         {
             get { return "Ìí¼ÓÓ°Ïñ"; }
         }
+
+        public Bitmap Bitmap { get { return new Bitmap("sid.ico"); } }
 
         public void OnClick()
         {
