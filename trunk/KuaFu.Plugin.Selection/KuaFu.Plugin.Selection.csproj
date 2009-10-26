@@ -66,6 +66,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KuaFu.Helper\KuaFu.Helper.csproj">
+      <Project>{CE7A5DFC-9B35-4997-B81F-323E1EFAE09C}</Project>
+      <Name>KuaFu.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KuaFu.Plugin\KuaFu.Plugin.csproj">
       <Project>{D5C50008-8B94-4FD9-ACA5-D8F1B9ADEB59}</Project>
       <Name>KuaFu.Plugin</Name>
