@@ -76,7 +76,8 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>COPY /y "$(TargetPath)" "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\Addins"</PostBuildEvent>
+    <PostBuildEvent>IF NOT EXIST "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\Addins" mkdir "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\Addins"
+COPY /y "$(TargetPath)" "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\Addins"</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="选择.ico">
