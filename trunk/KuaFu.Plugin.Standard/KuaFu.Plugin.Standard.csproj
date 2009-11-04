@@ -59,6 +59,7 @@
     <Compile Include="frmSymbolization.Designer.cs">
       <DependentUpon>frmSymbolization.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowTableClass.cs" />
     <Compile Include="SymbolizationClass.cs" />
     <Compile Include="StandardTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

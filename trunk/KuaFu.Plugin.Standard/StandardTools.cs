@@ -21,7 +21,7 @@ namespace KuaFu.Plugin.Standard
 
         public long ItemCount
         {
-            get { return 3; }
+            get { return 4; }
         }
 
         public void GetItemInfo(int pos, IItemDef itemDef)
@@ -38,6 +38,10 @@ namespace KuaFu.Plugin.Standard
                     break;
                 case 2:
                     itemDef.ID = "Symbolization";
+                    itemDef.Group = false;
+                    break;
+                case 3:
+                    itemDef.ID = "ShowTable";
                     itemDef.Group = false;
                     break;
                 default:
