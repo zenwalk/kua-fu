@@ -26,9 +26,12 @@ namespace KuaFu.Plugin.Standard
             get { return null; }
         }
 
+        private frmShowTable _frmShowTable;
+
         public void OnClick()
         {
-            throw new NotImplementedException();
+            _frmShowTable = new frmShowTable(_app);
+            _frmShowTable.ShowDialog(_app.MainForm);
         }
 
         public void OnCreate(IApplication app)
@@ -38,7 +41,7 @@ namespace KuaFu.Plugin.Standard
 
         public void AfterLayerDraw(object sender, ESRI.MapObjects2.Core.AfterLayerDrawEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
