@@ -42,14 +42,15 @@ namespace KuaFu.Plugin.Standard
             {
                 Fields fields = recs.Fields;
 
+                List<string> vals = new List<string>(tableDesc.FieldCount);
+
                 foreach (var name in fieldNames)
                 {
                     string val = fields.Item(name).ValueAsString;
+                    vals.Add(val);
                 }
 
-                object vals = from 
-
-                dataGrid.Rows.Add();
+                dataGrid.Rows.Add(vals.ToArray());
 
                 recs.MoveNext();
             }
