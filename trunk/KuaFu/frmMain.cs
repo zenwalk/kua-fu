@@ -210,7 +210,11 @@ namespace KuaFu
             //showSplashThread.Join();
             //showSplashThread = null;
 
-            
+            object o = (object)axMap;
+            axlegend1.setMapSource(ref o);
+            bool b = true;
+            object o2 = (object)b;
+            axlegend1.LoadLegend(ref b);
 
         }
 

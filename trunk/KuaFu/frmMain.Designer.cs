@@ -51,7 +51,7 @@ namespace KuaFu
             this.MapContainer = new Janus.Windows.UI.Dock.UIPanel();
             this.MapContainerContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
             this.axMap = new ESRI.MapObjects2.Core.AxMap();
-            this.axlegend1 = new AxMO21legend.Axlegend();
+            this.axlegend1 = new AxSampleLegendControl.Axlegend();
             ((System.ComponentModel.ISupportInitialize)(this.uiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BottomRebar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).BeginInit();
@@ -372,7 +372,7 @@ namespace KuaFu
         private ESRI.MapObjects2.Core.AxMap axMap;
         private Janus.Windows.UI.Dock.UIPanel SelectionPanel;
         private Janus.Windows.UI.Dock.UIPanelInnerContainer SelectionPanelContainer;
-        private AxMO21legend.Axlegend axlegend1;
+        private AxSampleLegendControl.Axlegend axlegend1;
 
     }
 }
