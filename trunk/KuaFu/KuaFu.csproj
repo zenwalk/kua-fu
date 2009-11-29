@@ -97,6 +97,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FastReflectionLib\FastReflectionLib.csproj">
+      <Project>{CB5CDFC1-C46C-413E-A12F-94464BAFB4C6}</Project>
+      <Name>FastReflectionLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KuaFu.Plugin.Selection\KuaFu.Plugin.Selection.csproj">
       <Project>{7806D220-F64B-47CA-B38A-7685ABD5F4F1}</Project>
       <Name>KuaFu.Plugin.Selection</Name>
@@ -118,32 +122,16 @@
     <Content Include="夸父追日.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="AxMO21legend">
-      <Guid>{C7FC2F7C-0688-11D5-B2F8-000102D87123}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
     <COMReference Include="AxSampleLegendControl">
-      <Guid>{C27B478C-EA60-458C-819F-7080334AEADF}</Guid>
+      <Guid>{2A735298-C5E3-4837-AFF5-0A63A8407A57}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="MO21legend">
-      <Guid>{C7FC2F7C-0688-11D5-B2F8-000102D87123}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
     <COMReference Include="SampleLegendControl">
-      <Guid>{C27B478C-EA60-458C-819F-7080334AEADF}</Guid>
+      <Guid>{2A735298-C5E3-4837-AFF5-0A63A8407A57}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
