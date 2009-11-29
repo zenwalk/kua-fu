@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using FastReflectionLib;
 using ESRI.MapObjects2.Core;
 using KuaFu.Plugin;
 using System.IO;
@@ -210,12 +210,24 @@ namespace KuaFu
             //showSplashThread.Join();
             //showSplashThread = null;
 
-            object o = (object)axMap;
+            //object o = (object)axMap;
+            //axlegend1.setMapSource(ref o);
+            //bool b = true;
+            //object o2 = (object)b;
+            //axlegend1.LoadLegend(ref b);
+
+            object o = (Map)axMap.GetOcx();
             axlegend1.setMapSource(ref o);
             bool b = true;
-            object o2 = (object)b;
             axlegend1.LoadLegend(ref b);
 
+            axlegend1.AfterSetLayerVisible += new AxSampleLegendControl.__legend_AfterSetLayerVisibleEventHandler(axlegend1_AfterSetLayerVisible);
+
+        }
+
+        void axlegend1_AfterSetLayerVisible(object sender, AxSampleLegendControl.__legend_AfterSetLayerVisibleEvent e)
+        {
+            axMap.CtlRefresh();
         }
 
         void MapContainer_MouseWheel(object sender, MouseEventArgs e)
@@ -409,5 +421,6 @@ namespace KuaFu
             //MessageBox.Show("Test");
             this.axMap.DrawShape(_application.Selection, sym_selected);
         }
+
     }
 }

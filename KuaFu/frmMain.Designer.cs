@@ -42,6 +42,7 @@ namespace KuaFu
             this.TOCPanel = new Janus.Windows.UI.Dock.UIPanelGroup();
             this.LayerPanel = new Janus.Windows.UI.Dock.UIPanel();
             this.LayerPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
+            this.axlegend1 = new AxSampleLegendControl.Axlegend();
             this.ProperPanel = new Janus.Windows.UI.Dock.UIPanel();
             this.ProperPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
             this.SelectionPanel = new Janus.Windows.UI.Dock.UIPanel();
@@ -51,7 +52,6 @@ namespace KuaFu
             this.MapContainer = new Janus.Windows.UI.Dock.UIPanel();
             this.MapContainerContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
             this.axMap = new ESRI.MapObjects2.Core.AxMap();
-            this.axlegend1 = new AxSampleLegendControl.Axlegend();
             ((System.ComponentModel.ISupportInitialize)(this.uiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BottomRebar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).BeginInit();
@@ -67,6 +67,7 @@ namespace KuaFu
             ((System.ComponentModel.ISupportInitialize)(this.LayerPanel)).BeginInit();
             this.LayerPanel.SuspendLayout();
             this.LayerPanelContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axlegend1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProperPanel)).BeginInit();
             this.ProperPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelectionPanel)).BeginInit();
@@ -77,7 +78,6 @@ namespace KuaFu
             this.MapContainer.SuspendLayout();
             this.MapContainerContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axMap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axlegend1)).BeginInit();
             this.SuspendLayout();
             // 
             // uiCommandManager
@@ -216,6 +216,16 @@ namespace KuaFu
             this.LayerPanelContainer.Size = new System.Drawing.Size(194, 241);
             this.LayerPanelContainer.TabIndex = 0;
             // 
+            // axlegend1
+            // 
+            this.axlegend1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axlegend1.Enabled = true;
+            this.axlegend1.Location = new System.Drawing.Point(0, 0);
+            this.axlegend1.Name = "axlegend1";
+            this.axlegend1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axlegend1.OcxState")));
+            this.axlegend1.Size = new System.Drawing.Size(194, 241);
+            this.axlegend1.TabIndex = 0;
+            // 
             // ProperPanel
             // 
             this.ProperPanel.InnerContainer = this.ProperPanelContainer;
@@ -296,16 +306,6 @@ namespace KuaFu
             this.axMap.AfterLayerDraw += new ESRI.MapObjects2.Core.AfterLayerDrawEventHandler(this.axMap_AfterLayerDraw);
             this.axMap.AfterTrackingLayerDraw += new ESRI.MapObjects2.Core.AfterTrackingLayerDrawEventHandler(this.axMap_AfterTrackingLayerDraw);
             // 
-            // axlegend1
-            // 
-            this.axlegend1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axlegend1.Enabled = true;
-            this.axlegend1.Location = new System.Drawing.Point(0, 0);
-            this.axlegend1.Name = "axlegend1";
-            this.axlegend1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axlegend1.OcxState")));
-            this.axlegend1.Size = new System.Drawing.Size(194, 241);
-            this.axlegend1.TabIndex = 0;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -334,6 +334,7 @@ namespace KuaFu
             ((System.ComponentModel.ISupportInitialize)(this.LayerPanel)).EndInit();
             this.LayerPanel.ResumeLayout(false);
             this.LayerPanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axlegend1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProperPanel)).EndInit();
             this.ProperPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SelectionPanel)).EndInit();
@@ -344,7 +345,6 @@ namespace KuaFu
             this.MapContainer.ResumeLayout(false);
             this.MapContainerContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axMap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axlegend1)).EndInit();
             this.ResumeLayout(false);
 
         }
